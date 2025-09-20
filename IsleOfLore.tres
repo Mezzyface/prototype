@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b3n6yieibj0d"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://b3n6yieibj0d"]
 
 [ext_resource type="FontFile" uid="uid://07wn3v1fq6u1" path="res://assets/theme/honeyblot_caps.ttf" id="1_76amx"]
 [ext_resource type="Texture2D" uid="uid://dbg2m5mkxsqqf" path="res://assets/theme/button_square_0.png" id="2_5rgcg"]
 [ext_resource type="Texture2D" uid="uid://cp8ems6goa31a" path="res://assets/theme/button_square_pressed_0.png" id="3_5rgcg"]
+[ext_resource type="Texture2D" uid="uid://b6ydqu2k1orb5" path="res://assets/theme/panel_0.png" id="4_61uxk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qamqr"]
 texture = ExtResource("3_5rgcg")
@@ -36,6 +37,17 @@ texture_margin_top = 14.0
 texture_margin_right = 14.0
 texture_margin_bottom = 14.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_piqcm"]
+texture = ExtResource("4_61uxk")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -61,3 +73,4 @@ Button/styles/focus = SubResource("StyleBoxEmpty_5rgcg")
 Button/styles/hover = SubResource("StyleBoxTexture_5rgcg")
 Button/styles/normal = SubResource("StyleBoxTexture_61uxk")
 Button/styles/pressed = SubResource("StyleBoxTexture_asxnq")
+Panel/styles/panel = SubResource("StyleBoxTexture_piqcm")

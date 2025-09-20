@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://klifd4xfcmtl"]
+
+[ext_resource type="Script" uid="uid://c43smx7x61x3l" path="res://scenes/UI/creature_card.gd" id="1_8wc68"]
+[ext_resource type="Texture2D" uid="uid://dp3kuw82g76mr" path="res://assets/Explosion_blue_circle/Explosion_blue_circle1.png" id="2_8h1yb"]
+
+[node name="CreatureCard" type="PanelContainer"]
+anchors_preset = -1
+script = ExtResource("1_8wc68")
+unknown_texture = ExtResource("2_8h1yb")
+card_size = Vector2(128, 160)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_8h1yb")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2

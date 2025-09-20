@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3 uid="uid://d30q0ml7hfowc"]
+
+[ext_resource type="Script" uid="uid://c7u6igsnwn8sc" path="res://scenes/UI/collection_gallery.gd" id="1_hubea"]
+[ext_resource type="PackedScene" uid="uid://klifd4xfcmtl" path="res://scenes/UI/creature_card.tscn" id="2_2djto"]
+
+[node name="CollectionGallery" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hubea")
+creature_card_scene = ExtResource("2_2djto")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 205.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Creature Collection"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0/15 Discovered"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="CreatureCard" parent="VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("2_2djto")]
+layout_mode = 2
+
+[node name="CreatureCard2" parent="VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("2_2djto")]
+layout_mode = 2
+
+[node name="CreatureCard3" parent="VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("2_2djto")]
+layout_mode = 2
+
+[node name="CreatureCard4" parent="VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("2_2djto")]
+layout_mode = 2
+
+[node name="CreatureCard5" parent="VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("2_2djto")]
+layout_mode = 2
+
+[node name="CreatureCard6" parent="VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("2_2djto")]
+layout_mode = 2
+
+[node name="CreatureCard7" parent="VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("2_2djto")]
+layout_mode = 2
+
+[node name="CreatureCard8" parent="VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("2_2djto")]
+layout_mode = 2
+
+[node name="CreatureCard9" parent="VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("2_2djto")]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -28.0
+offset_bottom = 35.0
+grow_horizontal = 0

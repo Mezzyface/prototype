@@ -29,6 +29,7 @@ func _ready():
 	sprite.play("idle")
 	# Connect click detection
 	click_area.input_event.connect(_on_input_event)
+	
 
 func _process(delta):
 	time_alive += delta
@@ -66,6 +67,3 @@ func evolutionCheck():
 				"clicks":
 					if clicks_received >= path.requirement_value:
 						ready_to_evolve.emit(self, path)
-
-func onSpawn():
-	pass

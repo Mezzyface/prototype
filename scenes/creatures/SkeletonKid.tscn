@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://cdc3cw2dappl0"]
+
+[ext_resource type="Script" uid="uid://cqnnlkmlnqhc2" path="res://scripts/creature.gd" id="1_4wd01"]
+[ext_resource type="Texture2D" uid="uid://coyigoen6cewx" path="res://assets/creatures/baby_skeleton/skeleton-idle.png" id="2_6in3m"]
+[ext_resource type="Resource" uid="uid://c71xn4mda7k6p" path="res://Data/Kid/KidSkeleton.tres" id="2_lmlvd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmlvd"]
+atlas = ExtResource("2_6in3m")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxyym"]
+atlas = ExtResource("2_6in3m")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57ype"]
+atlas = ExtResource("2_6in3m")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntqe7"]
+atlas = ExtResource("2_6in3m")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_25543"]
+atlas = ExtResource("2_6in3m")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0e0t"]
+atlas = ExtResource("2_6in3m")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6snr3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmlvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxyym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57ype")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntqe7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_25543")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0e0t")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tugbw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dqhmg"]
+
+[node name="Creature" type="CharacterBody2D"]
+script = ExtResource("1_4wd01")
+evolutionData = ExtResource("2_lmlvd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_6snr3")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_tugbw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_dqhmg")

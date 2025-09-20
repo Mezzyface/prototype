@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0vutbp618v0h"]
+
+[ext_resource type="Script" uid="uid://ddvvadk7n2hdr" path="res://scripts/creature_progress.gd" id="1_u0bki"]
+
+[node name="CreatureProgress" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_u0bki")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.5
+anchor_right = -0.5
+offset_right = 200.0
+offset_bottom = 56.0
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.5
+anchor_right = -0.5
+offset_left = 5.0
+offset_top = -25.0
+offset_right = 132.0
+offset_bottom = 19.0
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "Creature Name"

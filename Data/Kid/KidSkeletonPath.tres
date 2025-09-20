@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EvolutionPath" load_steps=3 format=3 uid="uid://ch1ju6bmtjbyg"]
+
+[ext_resource type="Script" uid="uid://td0rdx1453c" path="res://resources/EvolutionPath.gd" id="1_vxh0r"]
+[ext_resource type="PackedScene" uid="uid://cdc3cw2dappl0" path="res://scenes/creatures/SkeletonKid.tscn" id="2_p446r"]
+
+[resource]
+script = ExtResource("1_vxh0r")
+target_creature_scene = ExtResource("2_p446r")
+evolution_name = "Skeleton Kid"
+metadata/_custom_type_script = "uid://td0rdx1453c"

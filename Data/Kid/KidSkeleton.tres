@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EvolutionData" load_steps=3 format=3 uid="uid://c71xn4mda7k6p"]
+
+[ext_resource type="Script" uid="uid://td0rdx1453c" path="res://resources/EvolutionPath.gd" id="1_7iej6"]
+[ext_resource type="Script" uid="uid://d0lth2urbe8op" path="res://resources/EvolutionData.gd" id="2_xydnl"]
+
+[resource]
+script = ExtResource("2_xydnl")
+creature_id = "SkeletonKid"
+display_name = "Skellington"
+metadata/_custom_type_script = "uid://d0lth2urbe8op"

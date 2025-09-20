@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EvolutionPath" load_steps=3 format=3 uid="uid://13d0p2jvta5s"]
+
+[ext_resource type="Script" uid="uid://td0rdx1453c" path="res://resources/EvolutionPath.gd" id="1_7qgqx"]
+[ext_resource type="PackedScene" uid="uid://dgnj2ebvvb3ry" path="res://scenes/creatures/baby_blob.tscn" id="2_7qgqx"]
+
+[resource]
+script = ExtResource("1_7qgqx")
+target_creature_scene = ExtResource("2_7qgqx")
+evolution_name = "Blob"
+metadata/_custom_type_script = "uid://td0rdx1453c"

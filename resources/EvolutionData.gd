@@ -7,7 +7,3 @@ class_name EvolutionData
 
 # Evolution options
 @export var possible_evolutions: Array[EvolutionPath] = []
-
-# Requirements
-@export var base_clicks_required: int = 10
-@export var special_requirements: Dictionary = {}  # For future features

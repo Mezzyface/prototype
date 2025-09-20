@@ -30,9 +30,6 @@ func track_creature(creature: Creature):
 	# Update bar
 	_update_progress()
 	
-	# Connect to clicks
-	creature.clicked.connect(_on_creature_clicked)
-
 func _on_creature_clicked(_creature):
 	_update_progress()
 	

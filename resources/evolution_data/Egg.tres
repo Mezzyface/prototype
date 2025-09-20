@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://td0rdx1453c" path="res://resources/EvolutionPath.gd" id="1_3x7vd"]
 [ext_resource type="Script" uid="uid://d0lth2urbe8op" path="res://resources/EvolutionData.gd" id="2_2m4oj"]
-[ext_resource type="Resource" uid="uid://13d0p2jvta5s" path="res://Data/BabyBlobPath.tres" id="2_75jtx"]
+[ext_resource type="Resource" uid="uid://13d0p2jvta5s" path="res://resources/evolution_path/BabyBlobPath.tres" id="2_75jtx"]
 
 [resource]
 script = ExtResource("2_2m4oj")

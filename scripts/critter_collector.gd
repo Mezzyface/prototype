@@ -24,14 +24,6 @@ func _on_creature_ready(creature: Creature, path):
 func _on_creature_spawned(creature):
 	connect_creature(creature)
 
-
-func _on_egg_creature_spawned(creature: Variant):
-	connect_creature(creature)
-	var evolutions: Array[PackedScene]
-	evolutions.append(creature.evolution_scene)
-	display_evolution_previews(evolutions)
-	
-	
 func display_evolution_previews(evolutions: Array):
 	# Clear existing previews
 	for child in evolution_container.get_children():

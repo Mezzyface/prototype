@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://scmcch7artjb" path="res://assets/tilemap/Tilemap_color1.png" id="2_oo4nf"]
 [ext_resource type="Texture2D" uid="uid://c8cpryqb4uwhf" path="res://assets/tilemap/Water_Elevation_#1_(12frames).png" id="4_m705x"]
 [ext_resource type="Texture2D" uid="uid://b5bo3344tksx1" path="res://assets/tilemap/Water_Elevation_#2_(12frames).png" id="5_l14nb"]
-[ext_resource type="PackedScene" uid="uid://c0vutbp618v0h" path="res://scenes/creature_progress.tscn" id="5_td57r"]
+[ext_resource type="PackedScene" uid="uid://c0vutbp618v0h" path="res://scenes/UI/creature_progress.tscn" id="5_td57r"]
 [ext_resource type="Texture2D" uid="uid://blj3gxhc7c4xc" path="res://assets/tilemap/Water_FlatGround_#1_(12frames).png" id="6_lib7y"]
 [ext_resource type="Texture2D" uid="uid://ce8snj4pgt8o2" path="res://assets/tilemap/Water_Elevation_#3_(12frames).png" id="7_l14nb"]
 [ext_resource type="Texture2D" uid="uid://m8evmv7d1ehw" path="res://assets/tilemap/Water_FlatGround_#2_(12frames).png" id="7_o8n0w"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bdnuco7yvo40d" path="res://assets/tilemap/Water_FlatGround_#3_(12frames).png" id="8_ulvtl"]
 [ext_resource type="Texture2D" uid="uid://hi70bri7oe73" path="res://assets/tilemap/Water_FlatGround_#4_(12frames).png" id="9_6jyay"]
 [ext_resource type="PackedScene" uid="uid://dga2ummur5qo0" path="res://scenes/creatures/lil_egg.tscn" id="12_l14nb"]
-[ext_resource type="Resource" uid="uid://d01md70xpm2a2" path="res://Data/Egg.tres" id="13_lib7y"]
+[ext_resource type="Resource" uid="uid://d01md70xpm2a2" path="res://resources/evolution_data/Egg.tres" id="13_lib7y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r2xd2"]
 texture = ExtResource("2_oo4nf")

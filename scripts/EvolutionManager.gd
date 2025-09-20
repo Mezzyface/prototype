@@ -33,6 +33,8 @@ func _perform_evolution(creature: Creature, path: EvolutionPath):
 
 		# Wait for animation to finish before continuing
 		await creature.sprite.animation_finished
+	else:
+		_spawn_evolution_effect(pos)
 
 	# Visual effect - shrink and glow
 	var tween = get_tree().create_tween()
@@ -54,7 +56,7 @@ func _perform_evolution(creature: Creature, path: EvolutionPath):
 		evolved.inherit_from(creature)
 	
 	# Spawn effect and remove old creature
-	_spawn_evolution_effect(pos)
+
 	creature.queue_free()
 	
 	# Animate new creature appearing
@@ -66,5 +68,20 @@ func _perform_evolution(creature: Creature, path: EvolutionPath):
 	evolution_completed.emit(creature, evolved)
 	
 func _spawn_evolution_effect(pos: Vector2):
-	# Add particles or effect at evolution position
-	pass
+	# Load your AnimatedSprite2D scene
+	var effect_scene = preload("res://scenes/evolve_effect.tscn")
+	var effect_instance = effect_scene.instantiate()
+
+	# Add it to the current scene
+	get_tree().current_scene.add_child(effect_instance)
+
+	# Set the position
+	effect_instance.global_position = pos
+
+	# Play the animation (replace "default" with your animation name)
+	effect_instance.play("evolve")
+
+	# Connect to the animation_finished signal to remove it when done
+	effect_instance.animation_finished.connect(func():
+		effect_instance.queue_free()
+	)

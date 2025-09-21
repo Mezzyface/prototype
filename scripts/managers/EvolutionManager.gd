@@ -29,8 +29,10 @@ func _perform_evolution(creature: Creature, evolution_req: EvolutionRequirement)
 	# Store important data
 	var pos = creature.global_position
 	var parent = creature.get_parent()
-	
-# Play the sprite Evolution Animation
+
+	var target_id = evolution_req.target_creature_id
+
+	# Play the sprite Evolution Animation
 	if creature.sprite and creature.sprite.sprite_frames.has_animation("evolve"):
 		print("Playing evolve animation")
 		creature.sprite.play("evolve")
@@ -56,7 +58,6 @@ func _perform_evolution(creature: Creature, evolution_req: EvolutionRequirement)
 	evolved.global_position = pos
 	
 	print("Tracking creature: ", evolved.creature_name)  # This will show if name is empty
-	print("Has evolution data: ", evolved.evolutionData != null)
 	
 	# Transfer any important data
 	if evolved.has_method("inherit_from"):

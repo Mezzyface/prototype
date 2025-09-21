@@ -5,9 +5,6 @@ class_name Creature
 @onready var click_area = $Area2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
-@export var evolutionData: EvolutionData
-@export var can_evolve: bool = false
-
 var creature_id: String = ""  # =
 var definition: CreatureDefinition
 
@@ -16,6 +13,10 @@ var movement: CreatureMovement
 
 # Basic info
 var creature_name: String = ""
+var creature_stage: Enums.CreatureStage
+var base_speed: float
+var can_seek_items: bool = false
+var can_evolve: bool = false
 
 # Evolution tracking
 var inventory: Dictionary = {}  # item_id -> count
@@ -33,27 +34,26 @@ signal clicked(creature)
 signal ready_to_evolve(creature, path)
 
 func _ready():
-	print("Creature spawned: ", creature_name)
-	if evolutionData:
-		creature_name = evolutionData.display_name
-	else:
-		push_error("No evolution data assigned to creature!")
-		creature_name = "Unknown"
-	
-	sprite.play("idle")
+	print("Creature spawned: ", creature_name, " Stage: ", definition.stage, " Speed: ", definition.base_speed)
+	if sprite and sprite.sprite_frames and sprite.sprite_frames.has_animation("idle"):
+		sprite.play("idle")
 	
 	# Ensure NavigationAgent2D exists
 	if not has_node("NavigationAgent2D"):
 		navigation_agent = NavigationAgent2D.new()
 		add_child(navigation_agent)
 		print("Added NavigationAgent2D to ", creature_name)
-	
-	# Setup movement component
-	if creature_name != "Lil Egg":
+	if definition.base_speed > 0:  # BETTER CHECK - uses speed instead of name
 		movement = CreatureMovement.new()
 		add_child(movement)
 		movement.setup(self, navigation_agent, sprite)
+		movement.move_speed = definition.base_speed
+		
+		# Only seek items if the creature can
+		if not definition.can_seek_items:
+			movement.item_detection_radius = 0
 	
+	movement = CreatureMovement.new()
 	# Connect click detection
 	click_area.input_event.connect(_on_input_event)
 
@@ -99,46 +99,15 @@ func _show_click_feedback():
 	tween.tween_property(sprite, "scale", Vector2(1.1, 1.1), 0.05)
 	tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.05)
 	
-func evolutionCheck_new():
+func evolutionCheck():
 	if not definition or definition.evolutions.is_empty():
 		return
 	
 	for evolution in definition.evolutions:
 		if evolution.check_requirements(self):
-			# For now, emit the old signal format
-			# We'll update this in Phase 5
 			print("Evolution available to: " + evolution.target_creature_id)
-
-func evolutionCheck():
-	if not can_evolve or not evolutionData:
-		return
-	
-	for path in evolutionData.possible_evolutions:
-		match path.requirement_type:
-			
-			Enums.RequirementType.CLICKS:
-				if clicks_received >= path.requirement_value:
-					ready_to_evolve.emit(self, path)
-					
-			Enums.RequirementType.TIME:
-				if time_alive >= path.requirement_value:
-					ready_to_evolve.emit(self, path)
-					
-			Enums.RequirementType.ITEM:
-				# Check if we have enough of the required item
-				if path.required_item != Enums.ItemID.NONE:
-					var item_count = inventory.get(path.required_item, 0)
-					if item_count >= path.requirement_value:
-						var item_name = Enums.ItemID.keys()[path.required_item]
-						print("%s has %d/%d %s - Ready to evolve!" % [
-							creature_name, 
-							item_count, 
-							path.requirement_value,
-							item_name
-						])
-						ready_to_evolve.emit(self, path)
-				else:
-					push_warning("Evolution path requires item but no item specified!")
+			ready_to_evolve.emit(self, evolution)
+			return  # Only emit once_id
 
 func prepare_for_evolution():
 	# Stop and remove movement component

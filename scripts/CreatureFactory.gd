@@ -33,6 +33,11 @@ func create_creature(creature_id: String) -> Creature:
 	creature.creature_id = creature_id
 	creature.creature_name = definition.display_name
 	creature.definition = definition
+
+	creature.creature_stage = definition.stage
+	creature.base_speed = definition.base_speed
+	creature.can_seek_items = definition.can_seek_items
+	creature.can_evolve = true  # Most creatures can evolve
 	
 	# Setup visuals
 	var sprite = creature.get_node("AnimatedSprite2D")

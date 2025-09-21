@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://cxgk51jg31xc"]
+
+[ext_resource type="PackedScene" uid="uid://dcxcpwtvkhh6m" path="res://scenes/creatures/creature.tscn" id="1_0mlxk"]
+[ext_resource type="Texture2D" uid="uid://coyigoen6cewx" path="res://assets/creatures/baby_skeleton/skeleton-idle.png" id="2_kgjsf"]
+[ext_resource type="Resource" uid="uid://c71xn4mda7k6p" path="res://resources/evolution_data/KidSkeleton.tres" id="2_x584v"]
+[ext_resource type="Texture2D" uid="uid://2oiyfnllu7l8" path="res://assets/creatures/baby_skeleton/skeleton-walk.png" id="3_x584v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqnrg"]
+atlas = ExtResource("2_kgjsf")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nf5t1"]
+atlas = ExtResource("2_kgjsf")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ivfy"]
+atlas = ExtResource("2_kgjsf")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq8ve"]
+atlas = ExtResource("2_kgjsf")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn5xy"]
+atlas = ExtResource("2_kgjsf")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7ohv"]
+atlas = ExtResource("2_kgjsf")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ccdq"]
+atlas = ExtResource("3_x584v")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qt5j"]
+atlas = ExtResource("3_x584v")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntujq"]
+atlas = ExtResource("3_x584v")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjjan"]
+atlas = ExtResource("3_x584v")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uix2y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqnrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nf5t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ivfy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vq8ve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn5xy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7ohv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ccdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qt5j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntujq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjjan")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[node name="Creature" instance=ExtResource("1_0mlxk")]
+evolutionData = ExtResource("2_x584v")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_uix2y")
+animation = &"walking"
+autoplay = "idle"
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -16)
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -16)

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EvolutionPath" load_steps=3 format=3 uid="uid://dde16j4liddjm"]
 
 [ext_resource type="Script" uid="uid://td0rdx1453c" path="res://resources/EvolutionPath.gd" id="1_tjqld"]
-[ext_resource type="PackedScene" uid="uid://dd3ey5bi7bely" path="res://scenes/creatures/GhostKid.tscn" id="2_k67j2"]
+[ext_resource type="PackedScene" uid="uid://c3bwqm28n5olx" path="res://scenes/creatures/mikey.tscn" id="2_k67j2"]
 
 [resource]
 script = ExtResource("1_tjqld")

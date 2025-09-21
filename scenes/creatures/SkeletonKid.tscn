@@ -114,3 +114,5 @@ shape = SubResource("CircleShape2D_tugbw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_dqhmg")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

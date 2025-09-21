@@ -5,7 +5,6 @@ extends Node2D
 @onready var island_manager = IslandManager.new()
 @onready var creature_progress: CreatureProgress = %CreatureProgress
 #@onready var evolution_container: HBoxContainer = %EvolutionPreview
-@onready var starter_creature: Creature = $Creature
 @onready var collection_gallery: CollectionGallery = $CanvasLayer/CollectionGallery
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 
@@ -13,8 +12,9 @@ extends Node2D
 func _ready():
 	add_child(evolution_manager)
 	add_child(collectionManager)
-	if starter_creature:
-		connect_creature(starter_creature)
+	
+	spawn_egg_at_tile(0, 0)
+	
 	# Connect to evolution completed signal
 	evolution_manager.evolution_completed.connect(_on_evolution_completed)
 	
@@ -44,10 +44,10 @@ func _on_evolution_completed(old_creature: Creature, new_creature: Creature):
 	connect_creature(new_creature)
 
 func _register_discovery(creature: Creature):
-	if collection_gallery:
-		# Build gallery
-		collection_gallery._populate_gallery(collectionManager)
-		collection_gallery._update_progress(collectionManager)
+	#if collection_gallery:
+		## Build gallery
+		#collection_gallery._populate_gallery(collectionManager)
+		#collection_gallery._update_progress(collectionManager)
 	# Use creature name as ID for now
 	var was_new = collectionManager.register_creature(creature.evolutionData.creature_id)
 	if was_new:
@@ -70,41 +70,54 @@ func is_position_walkable(world_pos: Vector2) -> bool:
 	var source_id = tile_map_layer.get_cell_source_id(tile_pos)
 
 	# Assuming sources 0-6 are land, 7+ are water (adjust based on your setup)
-	return source_id >= 0 and source_id <= 6
+	return source_id == 0 
 
 func spawn_discovered_creature(creature: Creature):
+	var scene_path = creature.scene_file_path
+
+	if scene_path.is_empty():
+		print("ERROR: No scene path for creature: ", creature.creature_name)
+		# Fallback to manual mapping
+		#scene_path = _get_scene_path_for_id(creature.evolutionData.creature_id)
 	
+	if scene_path.is_empty():
+		return
+		
+	print("Loading scene: ", scene_path)
+	
+	# Create fresh instance
+	var display_copy = load(scene_path).instantiate()
+	
+	# Position on collection island
 	var tile_pos = Vector2i(-10, 5)
 	var world_pos = tile_map_layer.map_to_local(tile_pos)
-	var display_copy  = create_display_copy(creature)
-	add_child(display_copy)
-	creature.global_position = world_pos
+	display_copy.global_position = world_pos
 	
-	# Make it just wander, no evolution
-	creature.can_evolve = false
-	connect_creature(creature)
+	add_child(display_copy)
+	
+	# Wait for initialization
+	await get_tree().process_frame
+	
+	# Configure as display creature with movement constraint
+	display_copy.configure_as_display(world_pos, 120.0)
+	
+	print("Spawned display creature at ", world_pos)
 
-func create_display_copy(original: Creature) -> Creature:
-	# Use duplicate with flags to deep copy
-	var copy = original.duplicate(DUPLICATE_GROUPS | DUPLICATE_SCRIPTS | DUPLICATE_SIGNALS)
+func spawn_egg_at_tile(tile_x: int, tile_y: int):
+	var egg_scene = preload("res://scenes/creatures/lil_egg.tscn")
+	var egg = egg_scene.instantiate()
 
-	# Manually duplicate the visual components
-	var original_sprite = original.get_node("AnimatedSprite2D")
-	var copy_sprite = copy.get_node("AnimatedSprite2D")
+	# Convert tile to world position
+	var tile_pos = Vector2i(tile_x, tile_y)
+	var world_pos = tile_map_layer.map_to_local(tile_pos)
 
-	# Copy the sprite frames and animation
-	copy_sprite.sprite_frames = original_sprite.sprite_frames
-	copy_sprite.animation = original_sprite.animation
-	copy_sprite.frame = 0
-	copy_sprite.play("idle")
+	add_child(egg)
+	egg.global_position = world_pos
 
-	# Reset creature state for display version
-	copy.can_evolve = false
-	copy.clicks_received = 0
-	copy.time_alive = 0.0
+	# Make sure it's properly set up
+	egg.can_evolve = true
 
-	# Disconnect any signals we don't want
-	#if copy.ready_to_evolve.is_connected(_on_creature_ready):
-		#copy.ready_to_evolve.disconnect(_on_creature_ready)
+	# Connect it!
+	connect_creature(egg)
 
-	return copy
+	print("Spawned egg at tile ", tile_pos, " (world: ", world_pos, ")")

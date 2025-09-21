@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EvolutionPath" load_steps=3 format=3 uid="uid://dde16j4liddjm"]
+
+[ext_resource type="Script" uid="uid://td0rdx1453c" path="res://resources/EvolutionPath.gd" id="1_tjqld"]
+[ext_resource type="PackedScene" uid="uid://dd3ey5bi7bely" path="res://scenes/creatures/GhostKid.tscn" id="2_k67j2"]
+
+[resource]
+script = ExtResource("1_tjqld")
+target_creature_scene = ExtResource("2_k67j2")
+evolution_name = "Ghost Kid"
+requirement_type = 1
+metadata/_custom_type_script = "uid://td0rdx1453c"

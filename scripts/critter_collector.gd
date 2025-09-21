@@ -24,6 +24,21 @@ func _ready():
 
 	# Initialize game
 	_initialize_game()
+	_test_factory()
+	
+func _test_factory():
+	var factory = CreatureFactory.new()
+	factory.creature_database = preload("res://resources/creature_database.tres")
+	add_child(factory)
+	
+	# Try creating an egg from the database
+	var test_egg = factory.create_creature("egg")
+	if test_egg:
+		add_child(test_egg)
+		test_egg.position = Vector2(200, 0)  # Offset from normal spawn
+		print("Factory test: Created egg successfully!")
+	else:
+		print("Factory test: Failed to create egg")
 	
 func _connect_ui_signals():
 	# Only connect signals that affect UI

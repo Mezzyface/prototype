@@ -8,6 +8,9 @@ class_name Creature
 @export var evolutionData: EvolutionData
 @export var can_evolve: bool = false
 
+var creature_id: String = ""  # =
+var definition: CreatureDefinition
+
 # Components
 var movement: CreatureMovement
 
@@ -95,6 +98,16 @@ func _show_click_feedback():
 	var tween = get_tree().create_tween()
 	tween.tween_property(sprite, "scale", Vector2(1.1, 1.1), 0.05)
 	tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.05)
+	
+func evolutionCheck_new():
+	if not definition or definition.evolutions.is_empty():
+		return
+	
+	for evolution in definition.evolutions:
+		if evolution.check_requirements(self):
+			# For now, emit the old signal format
+			# We'll update this in Phase 5
+			print("Evolution available to: " + evolution.target_creature_id)
 
 func evolutionCheck():
 	if not can_evolve or not evolutionData:

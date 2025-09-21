@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CreatureDatabase" load_steps=6 format=3 uid="uid://dspi5ditg0ajy"]
+
+[ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="1_2kp4i"]
+[ext_resource type="Script" uid="uid://chcuclhofvfj5" path="res://resources/CreatureDatabase.gd" id="1_vs2yk"]
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="2_kp085"]
+[ext_resource type="SpriteFrames" uid="uid://ds8j0qtqwl2b7" path="res://resources/sprite_frames/egg_sprites.tres" id="3_57aeh"]
+
+[sub_resource type="Resource" id="Resource_xf7nt"]
+script = ExtResource("1_2kp4i")
+creature_id = "egg"
+display_name = "Lil Egg"
+stage = 0
+sprite_resource = ExtResource("3_57aeh")
+sprite_offset = Vector2(0, -17)
+base_speed = 0.0
+can_seek_items = false
+metadata/_custom_type_script = "uid://q22o01mw46jr"
+
+[resource]
+script = ExtResource("1_vs2yk")
+creatures = Array[ExtResource("1_2kp4i")]([SubResource("Resource_xf7nt")])
+metadata/_custom_type_script = "uid://chcuclhofvfj5"

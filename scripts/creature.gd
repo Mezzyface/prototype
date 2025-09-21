@@ -46,7 +46,7 @@ func _ready():
 		print("Added NavigationAgent2D to ", creature_name)
 	
 	# Setup movement component
-	if creature_name != "Lil_Egg":
+	if creature_name != "Lil Egg":
 		movement = CreatureMovement.new()
 		add_child(movement)
 		movement.setup(self, navigation_agent, sprite)
@@ -131,5 +131,5 @@ func prepare_for_evolution():
 func configure_as_display(center: Vector2, radius: float = 100.0):
 	can_evolve = false
 	if movement:
-		movement.set_constraint(center, radius)
+		#movement.set_constraint(center, radius)
 		movement.move_speed = 30.0  # Slower for display

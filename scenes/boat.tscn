@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://0g8qannhe0e"]
+
+[ext_resource type="Script" uid="uid://b1uj3qxich2m2" path="res://scripts/boat.gd" id="1_qyrje"]
+[ext_resource type="Texture2D" uid="uid://c7qmaegsns6yq" path="res://assets/creatures/boat/boat_idle.png" id="1_v8h0c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3ioc"]
+atlas = ExtResource("1_v8h0c")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyd55"]
+atlas = ExtResource("1_v8h0c")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w24o"]
+atlas = ExtResource("1_v8h0c")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8p2i"]
+atlas = ExtResource("1_v8h0c")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mltou"]
+atlas = ExtResource("1_v8h0c")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l4jb"]
+atlas = ExtResource("1_v8h0c")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6idm"]
+atlas = ExtResource("1_v8h0c")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ph1q"]
+atlas = ExtResource("1_v8h0c")
+region = Rect2(1792, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ljdts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3ioc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyd55")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8w24o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8p2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mltou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l4jb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6idm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ph1q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jmjr"]
+radius = 78.025635
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_qyrje")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ljdts")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.12559
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7jmjr")

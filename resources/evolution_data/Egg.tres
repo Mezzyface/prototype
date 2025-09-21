@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_2m4oj")
 creature_id = "Egg"
-display_name = "Lil_Egg"
+display_name = "Lil Egg"
 stage = 0
 possible_evolutions = Array[ExtResource("1_3x7vd")]([ExtResource("2_75jtx")])
 metadata/_custom_type_script = "uid://d0lth2urbe8op"

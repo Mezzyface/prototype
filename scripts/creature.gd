@@ -53,7 +53,6 @@ func _ready():
 		if not definition.can_seek_items:
 			movement.item_detection_radius = 0
 	
-	movement = CreatureMovement.new()
 	# Connect click detection
 	click_area.input_event.connect(_on_input_event)
 

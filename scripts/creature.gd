@@ -15,7 +15,7 @@ var movement: CreatureMovement
 var creature_name: String = ""
 
 # Evolution tracking
-
+var inventory: Dictionary = {}  # item_id -> count
 var clicks_received: int = 0
 var time_alive: float = 0.0
 
@@ -126,6 +126,21 @@ func prepare_for_evolution():
 	# Ensure we're in idle animation
 	if sprite and sprite.sprite_frames.has_animation("idle"):
 		sprite.play("idle")
+
+func add_item(item_data: ItemData):
+	var item_id = item_data.item_id
+	
+	# Add to inventory
+	if item_id in inventory:
+		inventory[item_id] += 1
+	else:
+		inventory[item_id] = 1
+	
+	print("%s collected %s! (Total: %d)" % [creature_name, item_data.display_name, inventory[item_id]])
+	
+	# Check if this completes evolution requirements
+	if can_evolve:
+		evolutionCheck()
 		
 # Configure movement for display creatures
 func configure_as_display(center: Vector2, radius: float = 100.0):

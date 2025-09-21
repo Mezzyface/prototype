@@ -11,6 +11,14 @@ class_name CreatureMovement
 @export var constraint_center: Vector2
 @export var constraint_radius: float = 100.0
 
+# Item seeking
+@export var item_detection_radius: float = 200.0  # How far can the creature see?
+@export var item_scan_frequency: float = 0.5  # How often to look around (seconds)
+
+# Tracking
+var scan_timer: float = 0.0
+var target_item: ItemPickup = null
+
 # States - REMOVED local enum, using Enums.MovementState instead
 var current_state: Enums.MovementState = Enums.MovementState.IDLE
 
@@ -44,18 +52,56 @@ func setup(_creature: CharacterBody2D, _nav_agent: NavigationAgent2D, _sprite: A
 func process_movement(delta: float):
 	if not creature or not navigation_agent:
 		return
+
+	# Periodically scan for items
+	scan_timer += delta
+	if scan_timer >= item_scan_frequency:
+		scan_timer = 0.0
+		_scan_for_items()  # Look around!
 	
+	if target_item and is_instance_valid(target_item):
+		if current_state != Enums.MovementState.SEEKING:
+			# Start seeking!
+			print("CHANGING STATE TO SEEKING")  # Debug
+			current_state = Enums.MovementState.SEEKING
+			navigation_agent.target_position = target_item.global_position
+			print("Target position set to: ", navigation_agent.target_position)  # Debug
+
 	match current_state:
 		Enums.MovementState.IDLE:
 			_handle_idle(delta)
 		Enums.MovementState.MOVING:
 			_handle_moving(delta)
+		Enums.MovementState.SEEKING:
+			_handle_seeking(delta)
+
+func _scan_for_items():
+	if not creature:
+		return
+	
+	# Get all items in the scene
+	var items = creature.get_tree().get_nodes_in_group("items")
+	
+	var closest_item = null
+	var closest_distance = item_detection_radius
+	
+	for item in items:
+		if item is ItemPickup and not item.is_collected:
+			var distance = creature.global_position.distance_to(item.global_position)
+			if distance < closest_distance:
+				closest_distance = distance
+				closest_item = item
+	
+	# If we found something, target it!
+	if closest_item and not target_item:
+		target_item = closest_item
+		print("%s spotted an item!" % creature.creature_name)
 
 func physics_process_movement(_delta: float):
 	if not navigation_agent or navigation_agent.is_navigation_finished():
 		return
 	
-	if current_state == Enums.MovementState.MOVING:
+	if current_state == Enums.MovementState.MOVING or current_state == Enums.MovementState.SEEKING:
 		var next_path_position = navigation_agent.get_next_path_position()
 		var direction = creature.global_position.direction_to(next_path_position)
 		
@@ -85,6 +131,22 @@ func _handle_moving(_delta: float):
 	if navigation_agent.is_navigation_finished():
 		current_state = Enums.MovementState.IDLE
 		creature.velocity = Vector2.ZERO
+
+func _handle_seeking(_delta: float):
+	# Visual feedback - move faster when excited about items!
+	if sprite and sprite.sprite_frames.has_animation("walking"):
+		sprite.play("walking")
+		sprite.speed_scale = 1.5  # Excited animation!
+	
+	# Keep updating target position in case item moves
+	if target_item and is_instance_valid(target_item):
+		navigation_agent.target_position = target_item.global_position
+	
+	# Check if we reached it or lost it
+	if navigation_agent.is_navigation_finished() or not is_instance_valid(target_item):
+		target_item = null
+		current_state = Enums.MovementState.IDLE
+		sprite.speed_scale = 1.0  # Back to normal
 
 func pick_random_destination():
 	if not navigation_agent:

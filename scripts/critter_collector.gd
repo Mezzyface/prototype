@@ -27,7 +27,7 @@ func _ready():
 
 	# NEW: Spawn a test item after a short delay
 	await get_tree().create_timer(1.0).timeout
-	
+	spawn_test_item()
 	# Connect to evolution completed signal
 	evolution_manager.evolution_completed.connect(_on_evolution_completed)
 	
@@ -35,7 +35,19 @@ func _ready():
 		# Build gallery
 		collection_gallery._populate_gallery(collectionManager)
 		collection_gallery._update_progress(collectionManager)
-
+		
+func spawn_test_item():
+	var candy = APPLE.instantiate()
+	add_child(candy)
+	candy.add_to_group("items")
+	
+	# Spawn it at a specific tile position
+	var tile_pos = Vector2i(1, 1)  # 2 tiles to the right
+	var world_pos = tile_map_layer.map_to_local(tile_pos)
+	candy.global_position = world_pos
+	
+	print("Spawned candy at ", world_pos)
+	
 func _on_boat_reset_requested():
 	print("Boat requesting reset!")
 	reset_creature_with_boat_animation()

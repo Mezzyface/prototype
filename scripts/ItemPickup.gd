@@ -31,10 +31,8 @@ func _on_body_entered(body):
 
 func collect(creature: Creature):
 	is_collected = true
-	
-	# Give item to creature (we'll implement this next)
-	print(creature.creature_name, " collected ", item_data.display_name)
-	
+	creature.add_item(item_data)  # Give to creature
+
 	# Simple disappear effect
 	var tween = get_tree().create_tween()
 	tween.parallel().tween_property(sprite, "scale", Vector2(.5, .5), 0.2)

@@ -26,12 +26,11 @@ var time_alive: float = 0.0
 # Clicking state
 var is_being_clicked: bool = false
 
-# Reference to main scene (for tile checking if needed)
-var main_scene
-
 # Signals
 signal clicked(creature)
 signal ready_to_evolve(creature, path)
+signal item_collected(creature)
+
 
 func _ready():
 	print("Creature spawned: ", creature_name, " Stage: ", definition.stage, " Speed: ", definition.base_speed)
@@ -62,9 +61,7 @@ func _process(delta):
 	# Let movement component handle movement unless being clicked
 	if not is_being_clicked and movement:
 		movement.process_movement(delta)
-	
-	if can_evolve:
-		evolutionCheck()
+
 
 func _physics_process(delta):
 	# Let movement component handle physics
@@ -89,60 +86,39 @@ func _handle_click():
 	# Resume movement after click
 	await get_tree().create_timer(0.5).timeout
 	is_being_clicked = false
-	
-	if can_evolve:
-		evolutionCheck()
 
 func _show_click_feedback():
 	var tween = get_tree().create_tween()
 	tween.tween_property(sprite, "scale", Vector2(1.1, 1.1), 0.05)
 	tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.05)
 	
-func evolutionCheck():
+func get_available_evolutions() -> Array:
+	"""Check which evolutions are currently available"""
+	var available = []
 	if not definition or definition.evolutions.is_empty():
-		return
+		return available
 	
 	for evolution in definition.evolutions:
 		if evolution.check_requirements(self):
-			print("Evolution available to: " + evolution.target_creature_id)
-			ready_to_evolve.emit(self, evolution)
-			return  # Only emit once_id
-
-func prepare_for_evolution():
-	# Stop and remove movement component
-	if movement:
-		movement.stop_movement()
-		movement.queue_free()
-		movement = null
+			available.append(evolution) 
 	
-	# Stop processing
-	set_process(false)
-	set_physics_process(false)
-	
-	# Ensure we're in idle animation
-	if sprite and sprite.sprite_frames.has_animation("idle"):
-		sprite.play("idle")
+	return available
 
 func add_item(item_data: ItemData):
 	var item_id = item_data.item_id
 	
-	# Add to inventory
 	if item_id in inventory:
 		inventory[item_id] += 1
 	else:
 		inventory[item_id] = 1
 	
-	# Get the enum name for cleaner debug output
 	var item_name = Enums.ItemID.keys()[item_id]
 	print("%s collected %s! (Total: %d)" % [creature_name, item_data.display_name, inventory[item_id]])
 	
-	# Show visual feedback
 	_show_item_collected_effect()
-	
-	# Check if this completes evolution requirements
-	if can_evolve:
-		evolutionCheck()
-		
+
+	item_collected.emit(self)
+
 # Configure movement for display creatures
 func configure_as_display(center: Vector2, radius: float = 100.0):
 	can_evolve = false

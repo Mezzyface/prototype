@@ -1,90 +1,102 @@
-[gd_scene load_steps=25 format=3 uid="uid://cuofg24u4i2pd"]
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=28 format=3 uid="uid://i4tla7s7gtjr"]
 
-[ext_resource type="PackedScene" uid="uid://dcxcpwtvkhh6m" path="res://scenes/creatures/creature.tscn" id="1_5jtav"]
-[ext_resource type="Resource" uid="uid://d01md70xpm2a2" path="res://resources/evolution_data/Egg.tres" id="2_5jtav"]
-[ext_resource type="Texture2D" uid="uid://2lrhsly232dm" path="res://assets/creatures/egg/egg_sprite_sheet.png" id="2_5npks"]
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_ichfn"]
+[ext_resource type="Script" uid="uid://c713d7ao874t1" path="res://resources/RequirementCondition.gd" id="2_arbwv"]
+[ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="3_anu28"]
+[ext_resource type="Texture2D" uid="uid://2lrhsly232dm" path="res://assets/creatures/egg/egg_sprite_sheet.png" id="4_adkr1"]
+
+[sub_resource type="Resource" id="Resource_58hqs"]
+script = ExtResource("2_arbwv")
+metadata/_custom_type_script = "uid://c713d7ao874t1"
+
+[sub_resource type="Resource" id="Resource_oao5c"]
+script = ExtResource("1_ichfn")
+target_creature_id = "BabyBlob"
+evolution_name = "Blobby"
+requirements = Array[ExtResource("2_arbwv")]([SubResource("Resource_58hqs")])
+metadata/_custom_type_script = "uid://bfesw8hr3ckk4"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5jtav"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kucxp"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(32, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m3hq5"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(64, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jeu4g"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(96, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h05jg"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(128, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8rffp"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(160, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x06uj"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(192, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gdm8m"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(224, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x2lyn"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(256, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_racjl"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(288, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4cuw1"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(320, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxq5d"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(352, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05tbm"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37spu"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xyhh"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_do3jj"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u268g"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_igqkl"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7w4gu"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w0a50"]
-atlas = ExtResource("2_5npks")
+atlas = ExtResource("4_adkr1")
 region = Rect2(64, 64, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xo0ax"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_l5lsj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -157,18 +169,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Creature" instance=ExtResource("1_5jtav")]
-evolutionData = ExtResource("2_5jtav")
-can_evolve = true
-
-[node name="AnimatedSprite2D" parent="." index="0"]
-position = Vector2(0, -17)
-sprite_frames = SubResource("SpriteFrames_xo0ax")
-animation = &"evolve"
-autoplay = "idle"
-
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, -10)
-
-[node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(0, -10)
+[resource]
+script = ExtResource("3_anu28")
+creature_id = "egg"
+display_name = "Lil Egg"
+stage = 0
+sprite_resource = SubResource("SpriteFrames_l5lsj")
+sprite_offset = Vector2(0, -17)
+base_speed = 0.0
+can_seek_items = false
+evolutions = Array[ExtResource("1_ichfn")]([SubResource("Resource_oao5c")])
+metadata/_custom_type_script = "uid://q22o01mw46jr"

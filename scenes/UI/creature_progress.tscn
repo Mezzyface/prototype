@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c0vutbp618v0h"]
 
-[ext_resource type="Script" uid="uid://ddvvadk7n2hdr" path="res://scripts/creature_progress.gd" id="1_u0bki"]
+[ext_resource type="Script" uid="uid://ddvvadk7n2hdr" path="res://scripts/ui/creature_progress.gd" id="1_u0bki"]
 
 [node name="CreatureProgress" type="Control"]
 layout_mode = 3

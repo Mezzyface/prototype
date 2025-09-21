@@ -1,0 +1,106 @@
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=18 format=3 uid="uid://q5b3yj8o6s8y"]
+
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_f0ika"]
+[ext_resource type="Script" uid="uid://c713d7ao874t1" path="res://resources/RequirementCondition.gd" id="2_qtow2"]
+[ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="3_0dl4b"]
+[ext_resource type="Texture2D" uid="uid://pifk863yaqte" path="res://assets/creatures/blob/blob_spritesheet.png" id="4_rt4kt"]
+
+[sub_resource type="Resource" id="Resource_ki3ku"]
+script = ExtResource("2_qtow2")
+metadata/_custom_type_script = "uid://c713d7ao874t1"
+
+[sub_resource type="Resource" id="Resource_bm5pj"]
+script = ExtResource("1_f0ika")
+target_creature_id = "KidSkeleton"
+evolution_name = "Skelliongton"
+requirements = Array[ExtResource("2_qtow2")]([SubResource("Resource_ki3ku")])
+metadata/_custom_type_script = "uid://bfesw8hr3ckk4"
+
+[sub_resource type="Resource" id="Resource_78i15"]
+script = ExtResource("2_qtow2")
+type = 1
+metadata/_custom_type_script = "uid://c713d7ao874t1"
+
+[sub_resource type="Resource" id="Resource_4c52o"]
+script = ExtResource("1_f0ika")
+target_creature_id = "KidGhost"
+evolution_name = "Mikey"
+requirements = Array[ExtResource("2_qtow2")]([SubResource("Resource_78i15")])
+metadata/_custom_type_script = "uid://bfesw8hr3ckk4"
+
+[sub_resource type="Resource" id="Resource_ecy1o"]
+script = ExtResource("2_qtow2")
+type = 2
+value = 1
+item_id = 1
+metadata/_custom_type_script = "uid://c713d7ao874t1"
+
+[sub_resource type="Resource" id="Resource_ljh8q"]
+script = ExtResource("1_f0ika")
+target_creature_id = "KidBear"
+evolution_name = "Bearnald"
+requirements = Array[ExtResource("2_qtow2")]([SubResource("Resource_ecy1o")])
+metadata/_custom_type_script = "uid://bfesw8hr3ckk4"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3nm6"]
+atlas = ExtResource("4_rt4kt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuaqx"]
+atlas = ExtResource("4_rt4kt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qemi7"]
+atlas = ExtResource("4_rt4kt")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm6uw"]
+atlas = ExtResource("4_rt4kt")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngafv"]
+atlas = ExtResource("4_rt4kt")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r81h"]
+atlas = ExtResource("4_rt4kt")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b7obj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3nm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuaqx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qemi7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm6uw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngafv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r81h")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("3_0dl4b")
+creature_id = "BabyBlob"
+display_name = "Blobby"
+sprite_resource = SubResource("SpriteFrames_b7obj")
+evolutions = Array[ExtResource("1_f0ika")]([SubResource("Resource_bm5pj"), SubResource("Resource_4c52o"), SubResource("Resource_ljh8q")])
+metadata/_custom_type_script = "uid://q22o01mw46jr"

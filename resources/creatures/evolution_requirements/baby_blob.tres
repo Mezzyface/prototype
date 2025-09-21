@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EvolutionRequirement" load_steps=4 format=3 uid="uid://bwrfqatmiqgbn"]
+
+[ext_resource type="Script" uid="uid://c713d7ao874t1" path="res://resources/RequirementCondition.gd" id="1_6jnn1"]
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="2_xqs8q"]
+
+[sub_resource type="Resource" id="Resource_58hqs"]
+script = ExtResource("1_6jnn1")
+metadata/_custom_type_script = "uid://c713d7ao874t1"
+
+[resource]
+script = ExtResource("2_xqs8q")
+target_creature_id = "BabyBlob"
+evolution_name = "Blobby"
+requirements = Array[ExtResource("1_6jnn1")]([SubResource("Resource_58hqs")])
+metadata/_custom_type_script = "uid://bfesw8hr3ckk4"

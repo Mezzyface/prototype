@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EvolutionRequirement" load_steps=4 format=3 uid="uid://cfa6a7fl1ffaf"]
+
+[ext_resource type="Script" uid="uid://c713d7ao874t1" path="res://resources/RequirementCondition.gd" id="1_7in7j"]
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="2_po8oe"]
+
+[sub_resource type="Resource" id="Resource_78i15"]
+script = ExtResource("1_7in7j")
+type = 1
+metadata/_custom_type_script = "uid://c713d7ao874t1"
+
+[resource]
+script = ExtResource("2_po8oe")
+target_creature_id = "KidGhost"
+evolution_name = "Mikey"
+requirements = Array[ExtResource("1_7in7j")]([SubResource("Resource_78i15")])
+metadata/_custom_type_script = "uid://bfesw8hr3ckk4"

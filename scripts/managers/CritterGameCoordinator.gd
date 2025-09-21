@@ -129,17 +129,12 @@ func _check_for_evolution():
 			evolution.get_description()
 		])
 		print("  Progress: %.1f%%" % (evolution.get_progress(current_creature) * 100))
-	
-	
+		
 	if available_evolutions.is_empty():
 		return
 	
 	# We have an evolution available!
 	print("Evolution available for %s" % current_creature.creature_name)
-	
-	# Stop checking to prevent spam
-	#current_creature.can_evolve = false
-	#evolution_check_timer.stop()
 	
 	# Use the first available evolution (you could add choice UI here later)
 	var chosen_evolution = available_evolutions[0]

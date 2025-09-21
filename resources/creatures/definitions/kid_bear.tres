@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=12 format=3 uid="uid://cfrkvufdd0r4c"]
+
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_42wm1"]
+[ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="2_yl1bo"]
+[ext_resource type="Texture2D" uid="uid://dbr6ursjooehg" path="res://assets/creatures/baby_bear/little-bear-idle.png" id="3_0dg0n"]
+[ext_resource type="Texture2D" uid="uid://nte7vauidkky" path="res://assets/creatures/baby_bear/little-bear-walk.png" id="4_i7qtk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4p10"]
+atlas = ExtResource("3_0dg0n")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h01q3"]
+atlas = ExtResource("3_0dg0n")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvw2x"]
+atlas = ExtResource("4_i7qtk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76pjh"]
+atlas = ExtResource("4_i7qtk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsu71"]
+atlas = ExtResource("4_i7qtk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_co4mi"]
+atlas = ExtResource("4_i7qtk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_378av"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4p10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h01q3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvw2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76pjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsu71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co4mi")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_yl1bo")
+creature_id = "KidBear"
+display_name = "Bearnald"
+stage = 2
+sprite_resource = SubResource("SpriteFrames_378av")
+metadata/_custom_type_script = "uid://q22o01mw46jr"

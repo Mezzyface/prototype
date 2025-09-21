@@ -62,6 +62,7 @@ text = "Creature Collector"
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_vertical = 3
+disabled = true
 text = "Idle Game"
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/CreatureCollector" to="." method="_on_creature_collector_pressed"]

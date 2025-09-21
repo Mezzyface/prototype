@@ -8,6 +8,7 @@ extends Node2D
 @onready var collection_gallery: CollectionGallery = $CanvasLayer/CollectionGallery
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 @onready var boat: Boat = $Boat
+@onready var label: Label = $CanvasLayer/MarginContainer/Label
 
 const APPLE = preload("res://scenes/Items/apple.tscn")
 
@@ -75,6 +76,8 @@ func _cleanup_current_creature():
 		# Clean up progress bar
 		if creature_progress:
 			creature_progress.cleanup()
+			label.text = ''
+			
 		
 		# Remove the creature
 		current_creature.queue_free()
@@ -122,7 +125,10 @@ func _spawn_egg_from_boat():
 func connect_creature(creature: Creature):
 	creature.main_scene = self
 	creature.ready_to_evolve.connect(_on_creature_ready)
-	creature_progress.track_creature(creature)
+	if label:
+		label.text = creature.creature_name
+	if creature_progress:
+		creature_progress.track_creature(creature)
 	_register_discovery(creature)
 
 func _on_creature_ready(creature: Creature, path):
@@ -135,6 +141,7 @@ func _on_evolution_completed(old_creature: Creature, new_creature: Creature):
 	# Clean up old creature tracking in progress bar
 	if creature_progress:
 		creature_progress.cleanup()  # You'll need to implement this
+		label.text = ''
 
 	current_creature = new_creature
 	# Connect and track the new creature

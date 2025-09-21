@@ -102,12 +102,15 @@ func evolutionCheck():
 	
 	for path in evolutionData.possible_evolutions:
 		match path.requirement_type:
-			"clicks":
+			Enums.RequirementType.CLICKS:
 				if clicks_received >= path.requirement_value:
-					# Clean shutdown of movement before evolving
-					prepare_for_evolution()
 					ready_to_evolve.emit(self, path)
-					return
+			Enums.RequirementType.TIME:
+				if time_alive >= path.requirement_value:
+					ready_to_evolve.emit(self, path)
+			Enums.RequirementType.ITEM:
+				# TODO: Implement item checking
+				pass
 
 func prepare_for_evolution():
 	# Stop and remove movement component

@@ -11,9 +11,8 @@ class_name CreatureMovement
 @export var constraint_center: Vector2
 @export var constraint_radius: float = 100.0
 
-# States
-enum State {IDLE, MOVING}
-var current_state: State = State.IDLE
+# States - REMOVED local enum, using Enums.MovementState instead
+var current_state: Enums.MovementState = Enums.MovementState.IDLE
 
 # References
 var creature: CharacterBody2D
@@ -47,16 +46,16 @@ func process_movement(delta: float):
 		return
 	
 	match current_state:
-		State.IDLE:
+		Enums.MovementState.IDLE:
 			_handle_idle(delta)
-		State.MOVING:
+		Enums.MovementState.MOVING:
 			_handle_moving(delta)
 
 func physics_process_movement(_delta: float):
 	if not navigation_agent or navigation_agent.is_navigation_finished():
 		return
 	
-	if current_state == State.MOVING:
+	if current_state == Enums.MovementState.MOVING:
 		var next_path_position = navigation_agent.get_next_path_position()
 		var direction = creature.global_position.direction_to(next_path_position)
 		
@@ -84,7 +83,7 @@ func _handle_moving(_delta: float):
 		sprite.play("walking")
 	
 	if navigation_agent.is_navigation_finished():
-		current_state = State.IDLE
+		current_state = Enums.MovementState.IDLE
 		creature.velocity = Vector2.ZERO
 
 func pick_random_destination():
@@ -107,14 +106,14 @@ func pick_random_destination():
 		target_position = creature.global_position + random_offset
 	
 	navigation_agent.target_position = target_position
-	current_state = State.MOVING
+	current_state = Enums.MovementState.MOVING
 
 func _on_velocity_computed(safe_velocity: Vector2):
 	creature.velocity = safe_velocity
 	creature.move_and_slide()
 
 func stop_movement():
-	current_state = State.IDLE
+	current_state = Enums.MovementState.IDLE
 	idle_timer = 0.0
 	if creature:
 		creature.velocity = Vector2.ZERO

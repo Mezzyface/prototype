@@ -102,15 +102,30 @@ func evolutionCheck():
 	
 	for path in evolutionData.possible_evolutions:
 		match path.requirement_type:
+			
 			Enums.RequirementType.CLICKS:
 				if clicks_received >= path.requirement_value:
 					ready_to_evolve.emit(self, path)
+					
 			Enums.RequirementType.TIME:
 				if time_alive >= path.requirement_value:
 					ready_to_evolve.emit(self, path)
+					
 			Enums.RequirementType.ITEM:
-				# TODO: Implement item checking
-				pass
+				# Check if we have enough of the required item
+				if path.required_item != Enums.ItemID.NONE:
+					var item_count = inventory.get(path.required_item, 0)
+					if item_count >= path.requirement_value:
+						var item_name = Enums.ItemID.keys()[path.required_item]
+						print("%s has %d/%d %s - Ready to evolve!" % [
+							creature_name, 
+							item_count, 
+							path.requirement_value,
+							item_name
+						])
+						ready_to_evolve.emit(self, path)
+				else:
+					push_warning("Evolution path requires item but no item specified!")
 
 func prepare_for_evolution():
 	# Stop and remove movement component
@@ -136,7 +151,12 @@ func add_item(item_data: ItemData):
 	else:
 		inventory[item_id] = 1
 	
+	# Get the enum name for cleaner debug output
+	var item_name = Enums.ItemID.keys()[item_id]
 	print("%s collected %s! (Total: %d)" % [creature_name, item_data.display_name, inventory[item_id]])
+	
+	# Show visual feedback
+	_show_item_collected_effect()
 	
 	# Check if this completes evolution requirements
 	if can_evolve:
@@ -148,3 +168,9 @@ func configure_as_display(center: Vector2, radius: float = 100.0):
 	if movement:
 		#movement.set_constraint(center, radius)
 		movement.move_speed = 30.0  # Slower for display
+
+func _show_item_collected_effect():
+	# Make the creature glow briefly
+	var tween = get_tree().create_tween()
+	tween.tween_property(sprite, "modulate", Color(1.5, 1.5, 1.5), 0.2)
+	tween.tween_property(sprite, "modulate", Color.WHITE, 0.3)

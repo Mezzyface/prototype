@@ -1,7 +1,7 @@
 extends Resource
 class_name ItemData
 
-@export var item_id: String = ""
+@export var item_id: Enums.ItemID = Enums.ItemID.NONE
 @export var display_name: String = ""
 @export var icon: Texture2D
 @export var rarity: Enums.ItemRarity = Enums.ItemRarity.COMMON

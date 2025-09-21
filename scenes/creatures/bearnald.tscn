@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://33stnp3nqprq"]
+
+[ext_resource type="PackedScene" uid="uid://dcxcpwtvkhh6m" path="res://scenes/creatures/creature.tscn" id="1_yyomy"]
+[ext_resource type="Texture2D" uid="uid://dbr6ursjooehg" path="res://assets/creatures/baby_bear/little-bear-idle.png" id="2_4ski5"]
+[ext_resource type="Resource" uid="uid://c8c37j5sa1idd" path="res://resources/evolution_data/KidBear.tres" id="2_fprsy"]
+[ext_resource type="Texture2D" uid="uid://nte7vauidkky" path="res://assets/creatures/baby_bear/little-bear-walk.png" id="3_fprsy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4p10"]
+atlas = ExtResource("2_4ski5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h01q3"]
+atlas = ExtResource("2_4ski5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvw2x"]
+atlas = ExtResource("3_fprsy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76pjh"]
+atlas = ExtResource("3_fprsy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsu71"]
+atlas = ExtResource("3_fprsy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_co4mi"]
+atlas = ExtResource("3_fprsy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gny61"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4p10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h01q3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvw2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76pjh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsu71")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_co4mi")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[node name="Creature" instance=ExtResource("1_yyomy")]
+evolutionData = ExtResource("2_fprsy")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_gny61")
+animation = &"idle"
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, -9)
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -9)

@@ -1,13 +1,14 @@
-[gd_resource type="Resource" script_class="EvolutionData" load_steps=5 format=3 uid="uid://doo305qn4p8a"]
+[gd_resource type="Resource" script_class="EvolutionData" load_steps=6 format=3 uid="uid://doo305qn4p8a"]
 
 [ext_resource type="Script" uid="uid://td0rdx1453c" path="res://resources/EvolutionPath.gd" id="1_nmaex"]
 [ext_resource type="Script" uid="uid://d0lth2urbe8op" path="res://resources/EvolutionData.gd" id="2_atpxk"]
 [ext_resource type="Resource" uid="uid://ch1ju6bmtjbyg" path="res://resources/evolution_path/KidSkeletonPath.tres" id="2_r8oth"]
 [ext_resource type="Resource" uid="uid://dde16j4liddjm" path="res://resources/evolution_path/KidGhostPath.tres" id="3_4clcu"]
+[ext_resource type="Resource" uid="uid://ry00m3hj5od7" path="res://resources/evolution_path/KidBearPath.tres" id="4_8ya6f"]
 
 [resource]
 script = ExtResource("2_atpxk")
 creature_id = "Baby_Blob"
 display_name = "Blobby"
-possible_evolutions = Array[ExtResource("1_nmaex")]([ExtResource("2_r8oth"), ExtResource("3_4clcu")])
+possible_evolutions = Array[ExtResource("1_nmaex")]([ExtResource("2_r8oth"), ExtResource("3_4clcu"), ExtResource("4_8ya6f")])
 metadata/_custom_type_script = "uid://d0lth2urbe8op"

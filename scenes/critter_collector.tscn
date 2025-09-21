@@ -388,7 +388,7 @@ texture_margin_bottom = 55.49542
 script = ExtResource("1_oo4nf")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(17.999908, 97.000046)
+position = Vector2(24, 97)
 scale = Vector2(44.718746, 28.156252)
 texture = ExtResource("2_1jn3h")
 

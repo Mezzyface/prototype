@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_ivhk7")
-item_id = "apple"
+item_id = 1
 display_name = "Fuji Apple"
 icon = ExtResource("1_h6ru5")
 metadata/_custom_type_script = "uid://djqh1qbjds3ru"

@@ -45,3 +45,14 @@ enum ItemType {
 	PERMANENT,    # Stays in inventory
 	EVOLUTION     # Specifically for evolution
 }
+
+# NEW: All items in the game
+enum ItemID {
+	NONE,           # Default/empty value
+	APPLE,
+	CANDY,
+	EVOLUTION_STONE,
+	MAGIC_BERRY,
+	STAR_FRAGMENT,
+	# Add more items as you create them
+}

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EvolutionData" load_steps=3 format=3 uid="uid://c8c37j5sa1idd"]
+
+[ext_resource type="Script" uid="uid://td0rdx1453c" path="res://resources/EvolutionPath.gd" id="1_qqwp3"]
+[ext_resource type="Script" uid="uid://d0lth2urbe8op" path="res://resources/EvolutionData.gd" id="2_35yle"]
+
+[resource]
+script = ExtResource("2_35yle")
+creature_id = "KidBear"
+display_name = "Bearnald"
+stage = 2
+metadata/_custom_type_script = "uid://d0lth2urbe8op"

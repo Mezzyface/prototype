@@ -33,6 +33,12 @@ func create_creature(creature_id: String) -> Creature:
 	creature.creature_id = creature_id
 	creature.creature_name = definition.display_name
 	creature.definition = definition
+	
+	# Add debug output to verify evolutions are being set
+	print("Created %s with %d possible evolutions" % [
+		definition.display_name, 
+		definition.evolutions.size()
+	])
 
 	creature.creature_stage = definition.stage
 	creature.base_speed = definition.base_speed

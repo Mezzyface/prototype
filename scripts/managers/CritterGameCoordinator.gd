@@ -61,10 +61,6 @@ func _connect_internal_signals():
 func _on_creature_spawned(creature: Creature):
 	current_creature = creature
 
-	# Disconnect any previous creature signals if they exist
-	if creature.ready_to_evolve.is_connected(_on_creature_ready_to_evolve):
-		creature.ready_to_evolve.disconnect(_on_creature_ready_to_evolve)
-
 	# Just connect the clicked signal
 	creature.clicked.connect(func(c): 
 		creature_clicked.emit(c)
@@ -106,9 +102,34 @@ func _check_for_evolution():
 		
 	if not current_creature.can_evolve:
 		return
+
+	# Add debugging
+	print("Checking evolution for: %s (clicks: %d, items: %s)" % [
+		current_creature.creature_name,
+		current_creature.clicks_received,
+		str(current_creature.inventory)
+	])
+
+	# Check if definition exists and has evolutions
+	if not current_creature.definition:
+		print("ERROR: No definition for creature!")
+		return
 	
+	if current_creature.definition.evolutions.is_empty():
+		print("No evolutions defined for this creature")
+		return
+
 	# Get available evolutions from creature
 	var available_evolutions = current_creature.get_available_evolutions()
+
+	# Debug what requirements are needed
+	for evolution in current_creature.definition.evolutions:
+		print("Evolution to %s requires: %s" % [
+			evolution.evolution_name,
+			evolution.get_description()
+		])
+		print("  Progress: %.1f%%" % (evolution.get_progress(current_creature) * 100))
+	
 	
 	if available_evolutions.is_empty():
 		return
@@ -117,8 +138,8 @@ func _check_for_evolution():
 	print("Evolution available for %s" % current_creature.creature_name)
 	
 	# Stop checking to prevent spam
-	current_creature.can_evolve = false
-	evolution_check_timer.stop()
+	#current_creature.can_evolve = false
+	#evolution_check_timer.stop()
 	
 	# Use the first available evolution (you could add choice UI here later)
 	var chosen_evolution = available_evolutions[0]
@@ -126,15 +147,6 @@ func _check_for_evolution():
 	# Emit signal and trigger evolution
 	creature_ready_to_evolve.emit(current_creature, chosen_evolution)
 	evolution_manager.trigger_evolution(current_creature, chosen_evolution)
-
-func _on_creature_ready_to_evolve(creature: Creature, evolution_req: EvolutionRequirement):
-	print("Coordinator: Creature ready to evolve!")
-	
-	# Prevent the spam by disabling evolution checks immediately
-	#creature.can_evolve = false
-	
-	creature_ready_to_evolve.emit(creature, evolution_req)
-	evolution_manager.trigger_evolution(creature, evolution_req)
 
 func _on_evolution_completed(old_creature: Creature, new_creature: Creature):
 	print("Coordinator: Evolution completed!")
@@ -162,7 +174,5 @@ func register_discovery(creature: Creature) -> bool:
 
 func cleanup_current_creature():
 	if current_creature and is_instance_valid(current_creature):
-		if current_creature.ready_to_evolve.is_connected(_on_creature_ready_to_evolve):
-			current_creature.ready_to_evolve.disconnect(_on_creature_ready_to_evolve)
 		current_creature.queue_free()
 		current_creature = null

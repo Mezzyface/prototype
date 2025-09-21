@@ -1,18 +1,23 @@
 extends Node
 class_name CreatureSpawner
 
+
 signal creature_spawned(creature: Creature)
 
 var tile_map: TileMapLayer
 var boat: Boat
+var creature_factory: CreatureFactory
 
-func setup(_tile_map: TileMapLayer, _boat: Boat):
+func setup(_tile_map: TileMapLayer, _boat: Boat, _factory: CreatureFactory):
 	tile_map = _tile_map
 	boat = _boat
+	creature_factory = _factory
 
 func spawn_egg_at_tile(tile_x: int, tile_y: int, can_evolve: bool = true) -> Creature:
-	var egg_scene = preload("res://scenes/creatures/lil_egg.tscn")
-	var egg = egg_scene.instantiate()
+	var egg = creature_factory.create_creature("egg")
+	if not egg:
+		push_error("Failed to create egg!")
+		return null
 	
 	# Convert tile to world position
 	var tile_pos = Vector2i(tile_x, tile_y)
@@ -28,8 +33,10 @@ func spawn_egg_at_tile(tile_x: int, tile_y: int, can_evolve: bool = true) -> Cre
 	return egg
 
 func spawn_egg_from_boat(can_evolve: bool = true) -> Creature:
-	var egg_scene = preload("res://scenes/creatures/lil_egg.tscn")
-	var egg = egg_scene.instantiate()
+	var egg = creature_factory.create_creature("egg")
+	if not egg:
+		push_error("Failed to create egg!")
+		return null
 	
 	# Start at boat position
 	get_tree().current_scene.add_child(egg)
@@ -68,16 +75,14 @@ func spawn_egg_from_boat(can_evolve: bool = true) -> Creature:
 	return egg
 
 func spawn_display_creature(original_creature: Creature) -> Creature:
-	var scene_path = original_creature.scene_file_path
-	
-	if scene_path.is_empty():
-		print("ERROR: No scene path for creature: ", original_creature.creature_name)
-		return null
+	var creature_id = original_creature.creature_id
+	if creature_id.is_empty():
+		creature_id = original_creature.evolutionData.creature_id
 		
-	print("Loading scene: ", scene_path)
-	
-	# Create fresh instance
-	var display_copy = load(scene_path).instantiate()
+	var display_copy = creature_factory.create_creature(creature_id)
+	if not display_copy:
+		print("ERROR: Could not create display creature: ", creature_id)
+		return null
 	
 	# Position on collection island
 	var tile_pos = Vector2i(-10, 5)

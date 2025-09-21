@@ -1,4 +1,5 @@
-# scripts/CreatureFactory.gd
+# In scripts/CreatureFactory.gd
+
 extends Node
 class_name CreatureFactory
 
@@ -9,6 +10,8 @@ func _ready():
 	if not creature_database:
 		push_error("CreatureFactory: No database assigned!")
 		return
+	
+	print("CreatureFactory: Database has %d creatures" % creature_database.creatures.size())
 	
 	if not creature_database.validate_all():
 		push_error("CreatureFactory: Database validation failed!")
@@ -55,9 +58,5 @@ func create_creature(creature_id: String) -> Creature:
 		area_collision.shape = circle
 		area_collision.position = definition.sprite_offset + Vector2(0, 7)
 	
-	# Setup movement if exists
-	if creature.has_node("CreatureMovement"):
-		var movement = creature.get_node("CreatureMovement")
-		movement.move_speed = definition.base_speed
-	
+	print("Successfully created creature: ", creature.creature_name)
 	return creature

@@ -6,10 +6,14 @@ class_name EvolutionManager
 signal evolution_started(creature)
 signal evolution_completed(old_creature, new_creature)
 
-func trigger_evolution(creature: Creature, path: EvolutionPath):
+var creature_factory: CreatureFactory
+
+func setup(_factory: CreatureFactory):
+	creature_factory = _factory
+	
+func trigger_evolution(creature: Creature, evolution_req: EvolutionRequirement):
 	if not creature.can_evolve:
 		return
-
 
 	print("Starting evolution for: ", creature.creature_name)
 	evolution_started.emit(creature)
@@ -19,9 +23,9 @@ func trigger_evolution(creature: Creature, path: EvolutionPath):
 	creature.set_physics_process(false)
 	
 	# Start evolution animation
-	_perform_evolution(creature, path)
+	_perform_evolution(creature, evolution_req)
 
-func _perform_evolution(creature: Creature, path: EvolutionPath):
+func _perform_evolution(creature: Creature, evolution_req: EvolutionRequirement):
 	# Store important data
 	var pos = creature.global_position
 	var parent = creature.get_parent()
@@ -43,8 +47,11 @@ func _perform_evolution(creature: Creature, path: EvolutionPath):
 	
 	await tween.finished
 	
-	# Spawn evolved form
-	var evolved = path.target_creature_scene.instantiate()
+	var evolved = creature_factory.create_creature(evolution_req.target_creature_id)
+	if not evolved:
+		push_error("Failed to create evolved creature: " + evolution_req.target_creature_id)
+		return
+	
 	parent.add_child(evolved)
 	evolved.global_position = pos
 	

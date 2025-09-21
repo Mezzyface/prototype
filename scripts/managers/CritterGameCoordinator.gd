@@ -8,7 +8,7 @@ signal creature_spawned(creature: Creature)
 signal creature_clicked(creature: Creature)
 signal creature_evolved(old_creature: Creature, new_creature: Creature)
 signal creature_discovered(creature_id: String, first_time: bool)
-signal creature_ready_to_evolve(creature: Creature, path: EvolutionPath)
+signal creature_ready_to_evolve(creature: Creature, evolution_req: EvolutionRequirement)
 signal item_collected(item: ItemData, creature: Creature)
 signal item_spawned(item: ItemPickup)
 signal reset_requested()
@@ -18,9 +18,14 @@ var collection_manager: CollectionManager
 var evolution_manager: EvolutionManager
 var creature_spawner: CreatureSpawner
 var item_spawner: ItemSpawner
+var creature_factory: CreatureFactory 
 var current_creature: Creature
 
 func setup_systems(tile_map: TileMapLayer, boat: Boat):
+	creature_factory = CreatureFactory.new()
+	creature_factory.creature_database = preload("res://resources/creature_database.tres")
+	add_child(creature_factory)
+	
 	# Create and configure all systems
 	collection_manager = CollectionManager.new()
 	evolution_manager = EvolutionManager.new()
@@ -32,7 +37,8 @@ func setup_systems(tile_map: TileMapLayer, boat: Boat):
 	add_child(creature_spawner)
 	add_child(item_spawner)
 	
-	creature_spawner.setup(tile_map, boat)
+	creature_spawner.setup(tile_map, boat, creature_factory)
+	evolution_manager.setup(creature_factory)
 	item_spawner.setup(tile_map)
 	
 	# Connect internal signals
@@ -58,14 +64,14 @@ func _on_creature_spawned(creature: Creature):
 	# Emit that a creature was spawned
 	creature_spawned.emit(creature)
 
-func _on_creature_ready_to_evolve(creature: Creature, path: EvolutionPath):
+func _on_creature_ready_to_evolve(creature: Creature, evolution_req: EvolutionRequirement):
 	print("Coordinator: Creature ready to evolve!")
 	
 	# Prevent the spam by disabling evolution checks immediately
 	#creature.can_evolve = false
 	
-	creature_ready_to_evolve.emit(creature, path)
-	evolution_manager.trigger_evolution(creature, path)
+	creature_ready_to_evolve.emit(creature, evolution_req)
+	evolution_manager.trigger_evolution(creature, evolution_req)
 
 func _on_evolution_completed(old_creature: Creature, new_creature: Creature):
 	print("Coordinator: Evolution completed!")
@@ -77,9 +83,14 @@ func _on_evolution_completed(old_creature: Creature, new_creature: Creature):
 	creature_evolved.emit(old_creature, new_creature)
 
 func register_discovery(creature: Creature) -> bool:
-	var was_new = collection_manager.register_creature(creature.evolutionData.creature_id)
+	var creature_id = creature.creature_id
+	if creature_id.is_empty():
+		push_error("Creature has no ID!")
+		return false
+		
+	var was_new = collection_manager.register_creature(creature_id)
 	if was_new:
-		creature_discovered.emit(creature.evolutionData.creature_id, true)
+		creature_discovered.emit(creature_id, true)
 	return was_new
 
 func cleanup_current_creature():

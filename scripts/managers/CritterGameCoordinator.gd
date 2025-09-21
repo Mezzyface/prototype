@@ -46,16 +46,34 @@ func _connect_internal_signals():
 
 func _on_creature_spawned(creature: Creature):
 	current_creature = creature
+
+	# Disconnect any previous creature signals if they exist
+	if creature.ready_to_evolve.is_connected(_on_creature_ready_to_evolve):
+		creature.ready_to_evolve.disconnect(_on_creature_ready_to_evolve)
+	
+	# Connect new creature signals
 	creature.ready_to_evolve.connect(_on_creature_ready_to_evolve)
 	creature.clicked.connect(func(c): creature_clicked.emit(c))
+	
+	# Emit that a creature was spawned
 	creature_spawned.emit(creature)
 
 func _on_creature_ready_to_evolve(creature: Creature, path: EvolutionPath):
+	print("Coordinator: Creature ready to evolve!")
+	
+	# Prevent the spam by disabling evolution checks immediately
+	#creature.can_evolve = false
+	
 	creature_ready_to_evolve.emit(creature, path)
 	evolution_manager.trigger_evolution(creature, path)
 
 func _on_evolution_completed(old_creature: Creature, new_creature: Creature):
+	print("Coordinator: Evolution completed!")
 	current_creature = new_creature
+	
+	# Connect the new creature's signals
+	_on_creature_spawned(new_creature)  # Reuse the spawn handler for connections
+	
 	creature_evolved.emit(old_creature, new_creature)
 
 func register_discovery(creature: Creature) -> bool:

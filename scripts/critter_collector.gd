@@ -126,21 +126,6 @@ func reset_creature_with_boat_animation():
 	# Spawn new egg from boat
 	await game_coordinator.creature_spawner.spawn_egg_from_boat()
 
-
-func connect_creature(creature: Creature):
-	creature.main_scene = self
-	creature.ready_to_evolve.connect(_on_creature_ready)
-	if label:
-		label.text = creature.creature_name
-	#if creature_progress:
-		#creature_progress.track_creature(creature)
-	game_coordinator._register_discovery(creature)
-
-func _on_creature_ready(creature: Creature, path):
-	print("Main scene: creature ready to evolve!")
-	game_coordinator.evolution_manager.trigger_evolution(creature, path)
-
-
 func is_position_walkable(world_pos: Vector2) -> bool:
 	# Convert world position to tile coordinates
 	var tile_pos = tile_map_layer.local_to_map(tile_map_layer.to_local(world_pos))

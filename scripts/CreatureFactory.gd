@@ -6,6 +6,14 @@ class_name CreatureFactory
 @export var creature_database: CreatureDatabase
 var base_creature_scene = preload("res://scenes/creatures/creature.tscn")
 
+const STAGE_TARGET_HEIGHTS = {
+	Enums.CreatureStage.EGG: 32,     # Eggs are 32 pixels tall
+	Enums.CreatureStage.BABY: 32,    # Babies are 32 pixels tall
+	Enums.CreatureStage.KID: 48,     # Kids are 48 pixels tall
+	Enums.CreatureStage.TEEN: 64,    # Teens are 64 pixels tall
+	Enums.CreatureStage.ADULT: 96    # Adults are 96 pixels tall
+}
+
 func _ready():
 	if not creature_database:
 		push_error("CreatureFactory: No database assigned!")
@@ -52,6 +60,16 @@ func create_creature(creature_id: String) -> Creature:
 		sprite.position = definition.sprite_offset
 		if sprite.sprite_frames.has_animation("idle"):
 			sprite.play("idle")
+			
+		var scale_factor = _calculate_scale_for_stage(sprite, definition.stage)
+		creature.scale = Vector2(scale_factor, scale_factor)
+		
+		print("Scaled %s: Original sprite height = %d, Target = %d, Scale = %.2f" % [
+			definition.display_name,
+			_get_sprite_height(sprite),
+			STAGE_TARGET_HEIGHTS.get(definition.stage, 32),
+			scale_factor
+		])
 	
 	# Setup collision
 	var collision = creature.get_node("CollisionShape2D")
@@ -71,3 +89,34 @@ func create_creature(creature_id: String) -> Creature:
 	
 	print("Successfully created creature: ", creature.creature_name)
 	return creature
+	
+# NEW: Helper function to get the actual sprite height
+func _get_sprite_height(sprite: AnimatedSprite2D) -> int:
+	if not sprite.sprite_frames:
+		return 32  # Default fallback
+		
+	# Get the first frame of the idle animation to measure
+	var idle_frames = sprite.sprite_frames.get_frame_count("idle")
+	if idle_frames > 0:
+		var texture = sprite.sprite_frames.get_frame_texture("idle", 0)
+		if texture:
+			return texture.get_height()
+	
+	# Fallback - try any animation
+	var animations = sprite.sprite_frames.get_animation_names()
+	for anim_name in animations:
+		var frame_count = sprite.sprite_frames.get_frame_count(anim_name)
+		if frame_count > 0:
+			var texture = sprite.sprite_frames.get_frame_texture(anim_name, 0)
+			if texture:
+				return texture.get_height()
+	
+	return 32  # Final fallback
+
+# NEW: Calculate the scale needed to reach target height
+func _calculate_scale_for_stage(sprite: AnimatedSprite2D, stage: Enums.CreatureStage) -> float:
+	var current_height = _get_sprite_height(sprite)
+	var target_height = STAGE_TARGET_HEIGHTS.get(stage, 32)
+	
+	# Calculate scale needed to reach target height
+	return float(target_height) / float(current_height)

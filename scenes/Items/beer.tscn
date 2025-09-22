@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://q2baymxso1ge"]
+
+[ext_resource type="Script" uid="uid://dc4o3qvkqhebn" path="res://scripts/ItemPickup.gd" id="1_7v8bv"]
+[ext_resource type="Resource" uid="uid://bivx44rrc84lg" path="res://resources/item_data/beer.tres" id="2_dx008"]
+[ext_resource type="Texture2D" uid="uid://bykxj05cxlybl" path="res://assets/items/rpg_item_icon_beer_56.png" id="3_618m6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3xbu"]
+
+[node name="ItemPickup" type="Area2D"]
+script = ExtResource("1_7v8bv")
+item_data = ExtResource("2_dx008")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(0.021728516, 0.021728516)
+texture = ExtResource("3_618m6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_s3xbu")

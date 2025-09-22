@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=12 format=3 uid="uid://cfrkvufdd0r4c"]
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=13 format=3 uid="uid://cfrkvufdd0r4c"]
 
 [ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_42wm1"]
+[ext_resource type="Resource" uid="uid://dy7tbm1d0410h" path="res://resources/creatures/evolution_requirements/teen_bear.tres" id="2_0dg0n"]
 [ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="2_yl1bo"]
 [ext_resource type="Texture2D" uid="uid://dbr6ursjooehg" path="res://assets/creatures/baby_bear/little-bear-idle.png" id="3_0dg0n"]
 [ext_resource type="Texture2D" uid="uid://nte7vauidkky" path="res://assets/creatures/baby_bear/little-bear-walk.png" id="4_i7qtk"]
@@ -66,4 +67,5 @@ creature_id = "KidBear"
 display_name = "Bearnald"
 stage = 2
 sprite_resource = SubResource("SpriteFrames_378av")
+evolutions = Array[ExtResource("1_42wm1")]([ExtResource("2_0dg0n")])
 metadata/_custom_type_script = "uid://q22o01mw46jr"

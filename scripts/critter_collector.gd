@@ -1,13 +1,14 @@
 extends Node2D
 
 @onready var game_coordinator = CritterGameCoordinator.new()
+@onready var label: Label = $CanvasLayer/MarginContainer/Label
+@onready var tile_map_layer: TileMapLayer = $TileMapLayer
+@onready var boat: Boat = $Boat
+@onready var shop: Shop = $Shop  # Add this
 
 #@onready var creature_progress: CreatureProgress = %CreatureProgress
 #@onready var collection_gallery: CollectionGallery = $CanvasLayer/CollectionGallery
-@onready var label: Label = $CanvasLayer/MarginContainer/Label
 
-@onready var tile_map_layer: TileMapLayer = $TileMapLayer
-@onready var boat: Boat = $Boat
 
 func _ready():
 	add_child(game_coordinator)
@@ -22,9 +23,32 @@ func _ready():
 	if boat:
 		boat.reset_requested.connect(_on_boat_reset_requested)
 
+	# Connect the house's item spawn signal
+	if shop:
+		shop.item_spawn_requested.connect(_on_shop_item_spawn_requested)
+
 	# Initialize game
 	_initialize_game()
+
+func _on_shop_item_spawn_requested(item_type: String, spawn_position: Vector2):
+	print("House requesting to spawn: ", item_type)
 	
+	# Use the coordinator's item spawner
+	var item = game_coordinator.item_spawner.spawn_item_at_position(item_type, spawn_position)
+	
+	if item:
+		# Add a little animation for the spawned item
+		_animate_item_spawn(item)
+
+func _animate_item_spawn(item: ItemPickup):
+	# Make item pop into existence
+	item.scale = Vector2(0.1, 0.1)
+	var tween = get_tree().create_tween()
+	
+	# Grow and bounce
+	tween.tween_property(item, "scale", Vector2(1.2, 1.2), 0.2)
+	tween.tween_property(item, "scale", Vector2(1.0, 1.0), 0.1)
+
 func _connect_ui_signals():
 	# Only connect signals that affect UI
 	game_coordinator.creature_spawned.connect(_on_creature_spawned_for_ui)
@@ -36,16 +60,6 @@ func _initialize_game():
 	# Spawn initial creature through coordinator
 	game_coordinator.creature_spawner.spawn_egg_at_tile(0, 0)
 	
-	# Spawn test item
-	await get_tree().create_timer(1.0).timeout
-	game_coordinator.item_spawner.spawn_item_at_tile("apple", Vector2i(1, 1))
-	
-	## Initialize gallery
-	#if collection_gallery:
-		#var cm = game_coordinator.collection_manager
-		#collection_gallery._populate_gallery(cm)
-		#collection_gallery._update_progress(cm)
-
 # === UI UPDATE HANDLERS ===
 
 func _on_creature_spawned_for_ui(creature: Creature):

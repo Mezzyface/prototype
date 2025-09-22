@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bivx44rrc84lg"]
+
+[ext_resource type="Script" uid="uid://djqh1qbjds3ru" path="res://resources/ItemData.gd" id="1_cbepr"]
+[ext_resource type="Texture2D" uid="uid://bykxj05cxlybl" path="res://assets/items/rpg_item_icon_beer_56.png" id="1_y03e8"]
+
+[resource]
+script = ExtResource("1_cbepr")
+item_id = 2
+display_name = "Beer"
+icon = ExtResource("1_y03e8")
+metadata/_custom_type_script = "uid://djqh1qbjds3ru"

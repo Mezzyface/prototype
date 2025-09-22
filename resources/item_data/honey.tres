@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://chkwk13e0g8js"]
+
+[ext_resource type="Texture2D" uid="uid://d0al554b26cjy" path="res://assets/items/rpg_item_icon_honey_63.png" id="1_1jdmg"]
+[ext_resource type="Script" uid="uid://djqh1qbjds3ru" path="res://resources/ItemData.gd" id="1_jfe4l"]
+
+[resource]
+script = ExtResource("1_jfe4l")
+item_id = 3
+display_name = "Honey"
+icon = ExtResource("1_1jdmg")
+metadata/_custom_type_script = "uid://djqh1qbjds3ru"

@@ -50,9 +50,12 @@ enum ItemType {
 enum ItemID {
 	NONE,           # Default/empty value
 	APPLE,
-	CANDY,
-	EVOLUTION_STONE,
-	MAGIC_BERRY,
-	STAR_FRAGMENT,
+	BEER,
+	HONEY,
+	DAGGER,
+	CLUB,
+	BOOMERANG,
+	SWORD,
+	ARMOR,
 	# Add more items as you create them
 }

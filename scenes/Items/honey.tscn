@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv6ru5ldoc33u"]
+
+[ext_resource type="Script" uid="uid://dc4o3qvkqhebn" path="res://scripts/ItemPickup.gd" id="1_nrgfi"]
+[ext_resource type="Resource" uid="uid://chkwk13e0g8js" path="res://resources/item_data/honey.tres" id="2_hmw0g"]
+[ext_resource type="Texture2D" uid="uid://d0al554b26cjy" path="res://assets/items/rpg_item_icon_honey_63.png" id="3_hneug"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3xbu"]
+
+[node name="ItemPickup" type="Area2D"]
+script = ExtResource("1_nrgfi")
+item_data = ExtResource("2_hmw0g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(0.019531248, 0.019531248)
+texture = ExtResource("3_hneug")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_s3xbu")

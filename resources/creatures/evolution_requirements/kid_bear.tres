@@ -7,7 +7,7 @@
 script = ExtResource("1_iyfpw")
 type = 2
 value = 1
-item_id = 1
+item_id = 3
 metadata/_custom_type_script = "uid://c713d7ao874t1"
 
 [resource]

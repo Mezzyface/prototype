@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://bfuuw4hc38b25"]
+[gd_scene load_steps=36 format=4 uid="uid://bfuuw4hc38b25"]
 
 [ext_resource type="Script" uid="uid://b1824hejn8dnq" path="res://scripts/critter_collector.gd" id="1_oo4nf"]
 [ext_resource type="Texture2D" uid="uid://dvpb60wnpsuyr" path="res://assets/tilemap/Water Background color.png" id="2_1jn3h"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://hi70bri7oe73" path="res://assets/tilemap/Water_FlatGround_#4_(12frames).png" id="9_6jyay"]
 [ext_resource type="PackedScene" uid="uid://0g8qannhe0e" path="res://scenes/boat.tscn" id="12_lib7y"]
 [ext_resource type="Texture2D" uid="uid://c2ybv4lshotql" path="res://assets/theme/banner_0.png" id="13_lib7y"]
+[ext_resource type="PackedScene" uid="uid://e5vvhs2iot7f" path="res://scenes/shop.tscn" id="14_lib7y"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_l14nb"]
 vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
@@ -429,3 +430,6 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_l14nb")
 text = "Display Name"
+
+[node name="Shop" parent="." instance=ExtResource("14_lib7y")]
+position = Vector2(-291, -42)

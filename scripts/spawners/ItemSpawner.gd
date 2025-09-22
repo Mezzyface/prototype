@@ -8,13 +8,25 @@ var tile_map: TileMapLayer
 # Preload common items
 var item_scenes := {
 	"apple": preload("res://scenes/Items/apple.tscn"),
-	# Add more items here as you create them
-	# "candy": preload("res://scenes/Items/candy.tscn"),
-	# "evolution_stone": preload("res://scenes/Items/evolution_stone.tscn"),
+	"beer": preload("res://scenes/Items/beer.tscn"),
+	"honey": preload("res://scenes/Items/honey.tscn"),
+}
+
+# Item metadata for display purposes
+var item_info := {
+	"apple": {"name": "Fuji Apple", "color": Color(1, 0.3, 0.3)},
+	"beer": {"name": "Beer", "color": Color(1, 0.5, 1)},
+	"honey": {"name": "Honey", "color": Color(0.5, 1, 0.5)},
 }
 
 func setup(_tile_map: TileMapLayer):
 	tile_map = _tile_map
+
+func get_item_display_name(item_key: String) -> String:
+	return item_info.get(item_key, {}).get("name", item_key)
+
+func get_item_color(item_key: String) -> Color:
+	return item_info.get(item_key, {}).get("color", Color.WHITE)
 
 func spawn_item_at_tile(item_name: String, tile_pos: Vector2i) -> ItemPickup:
 	if not item_name in item_scenes:

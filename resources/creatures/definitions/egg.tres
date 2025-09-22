@@ -1,20 +1,9 @@
-[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=28 format=3 uid="uid://i4tla7s7gtjr"]
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=26 format=3 uid="uid://i4tla7s7gtjr"]
 
 [ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_ichfn"]
-[ext_resource type="Script" uid="uid://c713d7ao874t1" path="res://resources/RequirementCondition.gd" id="2_arbwv"]
+[ext_resource type="Resource" uid="uid://bwrfqatmiqgbn" path="res://resources/creatures/evolution_requirements/baby_blob.tres" id="2_ichfn"]
 [ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="3_anu28"]
 [ext_resource type="Texture2D" uid="uid://2lrhsly232dm" path="res://assets/creatures/egg/egg_sprite_sheet.png" id="4_adkr1"]
-
-[sub_resource type="Resource" id="Resource_58hqs"]
-script = ExtResource("2_arbwv")
-metadata/_custom_type_script = "uid://c713d7ao874t1"
-
-[sub_resource type="Resource" id="Resource_oao5c"]
-script = ExtResource("1_ichfn")
-target_creature_id = "BabyBlob"
-evolution_name = "Blobby"
-requirements = Array[ExtResource("2_arbwv")]([SubResource("Resource_58hqs")])
-metadata/_custom_type_script = "uid://bfesw8hr3ckk4"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5jtav"]
 atlas = ExtResource("4_adkr1")
@@ -178,5 +167,5 @@ sprite_resource = SubResource("SpriteFrames_l5lsj")
 sprite_offset = Vector2(0, -17)
 base_speed = 0.0
 can_seek_items = false
-evolutions = Array[ExtResource("1_ichfn")]([SubResource("Resource_oao5c")])
+evolutions = Array[ExtResource("1_ichfn")]([ExtResource("2_ichfn")])
 metadata/_custom_type_script = "uid://q22o01mw46jr"

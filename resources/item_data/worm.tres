@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://ksp0ldomocdg"]
+
+[ext_resource type="Texture2D" uid="uid://c1t3n74e6u1h7" path="res://assets/items/rpg_item_icon_worm_75.png" id="1_ieurq"]
+[ext_resource type="Script" uid="uid://djqh1qbjds3ru" path="res://resources/ItemData.gd" id="1_xcsea"]
+
+[resource]
+script = ExtResource("1_xcsea")
+item_id = 6
+display_name = "Worm"
+icon = ExtResource("1_ieurq")
+metadata/_custom_type_script = "uid://djqh1qbjds3ru"

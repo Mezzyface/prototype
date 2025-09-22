@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cha335sc0gvuv"]
+
+[ext_resource type="Script" uid="uid://dc4o3qvkqhebn" path="res://scripts/ItemPickup.gd" id="1_rlhij"]
+[ext_resource type="Resource" uid="uid://bivx44rrc84lg" path="res://resources/item_data/beer.tres" id="2_3sm68"]
+[ext_resource type="Texture2D" uid="uid://cbpgb80eik0u8" path="res://assets/items/rpg_item_icon_sword_153.png" id="3_rlhij"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3xbu"]
+
+[node name="ItemPickup" type="Area2D"]
+script = ExtResource("1_rlhij")
+item_data = ExtResource("2_3sm68")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(0.021728516, 0.021728516)
+texture = ExtResource("3_rlhij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_s3xbu")

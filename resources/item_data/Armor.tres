@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://b2viwo5odvq8k"]
+
+[ext_resource type="Texture2D" uid="uid://ce77abbk7nhnl" path="res://assets/items/rpg_item_icon_plate_armor_194.png" id="1_4y3pi"]
+[ext_resource type="Script" uid="uid://djqh1qbjds3ru" path="res://resources/ItemData.gd" id="1_47ekx"]
+
+[resource]
+script = ExtResource("1_47ekx")
+item_id = 8
+display_name = "Armor"
+icon = ExtResource("1_4y3pi")
+metadata/_custom_type_script = "uid://djqh1qbjds3ru"

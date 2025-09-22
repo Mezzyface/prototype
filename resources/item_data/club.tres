@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://4pdbydpfpcta"]
+
+[ext_resource type="Script" uid="uid://djqh1qbjds3ru" path="res://resources/ItemData.gd" id="1_5vyun"]
+[ext_resource type="Texture2D" uid="uid://b85c0hm6x3xdy" path="res://assets/items/rpg_item_icon_club_159.png" id="1_ak2ve"]
+
+[resource]
+script = ExtResource("1_5vyun")
+item_id = 5
+display_name = "Club"
+icon = ExtResource("1_ak2ve")
+metadata/_custom_type_script = "uid://djqh1qbjds3ru"

@@ -54,7 +54,7 @@ enum ItemID {
 	HONEY,
 	DAGGER,
 	CLUB,
-	BOOMERANG,
+	WORM,
 	SWORD,
 	ARMOR,
 	# Add more items as you create them

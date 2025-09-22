@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1758492192|4015726212';
+const CACHE_VERSION = '1758503570|4036352203';
 /** @type {string} */
 const CACHE_PREFIX = 'Critter-Prototyp-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;

@@ -10,13 +10,23 @@ var item_scenes := {
 	"apple": preload("res://scenes/Items/apple.tscn"),
 	"beer": preload("res://scenes/Items/beer.tscn"),
 	"honey": preload("res://scenes/Items/honey.tscn"),
+	"worm": preload("res://scenes/Items/worm.tscn"),
+	"club": preload("res://scenes/Items/club.tscn"),
+	"armor": preload("res://scenes/Items/armor.tscn"),
+	"dagger": preload("res://scenes/Items/dagger.tscn"),
+	"sword": preload("res://scenes/Items/sword.tscn")
 }
 
 # Item metadata for display purposes
 var item_info := {
 	"apple": {"name": "Fuji Apple", "color": Color(1, 0.3, 0.3)},
-	"beer": {"name": "Beer", "color": Color(1, 0.5, 1)},
-	"honey": {"name": "Honey", "color": Color(0.5, 1, 0.5)},
+	"beer": {"name": "Beer", "color": Color(0.8, 0.6, 0.2)},
+	"honey": {"name": "Honey", "color": Color(1, 0.8, 0.2)},
+	"worm": {"name": "Worm", "color": Color(0.6, 0.4, 0.3)},
+	"club": {"name": "Club", "color": Color(0.4, 0.3, 0.2)},
+	"armor": {"name": "Armor", "color": Color(0.7, 0.7, 0.8)},
+	"dagger": {"name": "Dagger", "color": Color(0.8, 0.8, 0.9)},
+	"sword": {"name": "Sword", "color": Color(0.9, 0.9, 1.0)}
 }
 
 func setup(_tile_map: TileMapLayer):

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EvolutionRequirement" load_steps=4 format=3 uid="uid://bfhon8iqa1gxl"]
+
+[ext_resource type="Script" uid="uid://c713d7ao874t1" path="res://resources/RequirementCondition.gd" id="1_club"]
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="2_tiny"]
+
+[sub_resource type="Resource" id="Resource_club"]
+script = ExtResource("1_club")
+type = 2
+value = 1
+item_id = 5
+metadata/_custom_type_script = "uid://c713d7ao874t1"
+
+[resource]
+script = ExtResource("2_tiny")
+target_creature_id = "tiny"
+evolution_name = "Tiny"
+requirements = Array[ExtResource("1_club")]([SubResource("Resource_club")])
+metadata/_custom_type_script = "uid://bfesw8hr3ckk4"

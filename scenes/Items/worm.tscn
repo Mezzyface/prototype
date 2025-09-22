@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8f0cibvvjebv"]
 
 [ext_resource type="Script" uid="uid://dc4o3qvkqhebn" path="res://scripts/ItemPickup.gd" id="1_4p72m"]
-[ext_resource type="Resource" uid="uid://2yexi87fp8hg" path="res://resources/item_data/apple.tres" id="2_k0pbn"]
+[ext_resource type="Resource" uid="uid://ksp0ldomocdg" path="res://resources/item_data/worm.tres" id="2_4p72m"]
 [ext_resource type="Texture2D" uid="uid://c1t3n74e6u1h7" path="res://assets/items/rpg_item_icon_worm_75.png" id="3_4p72m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s3xbu"]
 
 [node name="ItemPickup" type="Area2D"]
 script = ExtResource("1_4p72m")
-item_data = ExtResource("2_k0pbn")
+item_data = ExtResource("2_4p72m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -10.000004)

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EvolutionRequirement" load_steps=4 format=3 uid="uid://dwn3ely4nae7k"]
+
+[ext_resource type="Script" uid="uid://c713d7ao874t1" path="res://resources/RequirementCondition.gd" id="1_sword"]
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="2_vincent"]
+
+[sub_resource type="Resource" id="Resource_sword"]
+script = ExtResource("1_sword")
+type = 2
+value = 1
+item_id = 7
+metadata/_custom_type_script = "uid://c713d7ao874t1"
+
+[resource]
+script = ExtResource("2_vincent")
+target_creature_id = "vincent"
+evolution_name = "Vincent"
+requirements = Array[ExtResource("1_sword")]([SubResource("Resource_sword")])
+metadata/_custom_type_script = "uid://bfesw8hr3ckk4"

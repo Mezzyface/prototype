@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EvolutionRequirement" load_steps=5 format=3 uid="uid://d2xsfl7y1toi2"]
+
+[ext_resource type="Script" uid="uid://c713d7ao874t1" path="res://resources/RequirementCondition.gd" id="1_multi"]
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="2_daisy"]
+
+[sub_resource type="Resource" id="Resource_apple"]
+script = ExtResource("1_multi")
+type = 2
+value = 1
+item_id = 1
+metadata/_custom_type_script = "uid://c713d7ao874t1"
+
+[sub_resource type="Resource" id="Resource_beer"]
+script = ExtResource("1_multi")
+type = 2
+value = 1
+item_id = 2
+metadata/_custom_type_script = "uid://c713d7ao874t1"
+
+[resource]
+script = ExtResource("2_daisy")
+target_creature_id = "daisy"
+evolution_name = "Daisy"
+requirements = Array[ExtResource("1_multi")]([SubResource("Resource_apple"), SubResource("Resource_beer")])
+metadata/_custom_type_script = "uid://bfesw8hr3ckk4"

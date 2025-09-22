@@ -3,7 +3,7 @@ class_name Shop
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
-@onready var item_label: Label = $ItemLabel
+#@onready var item_label: Label = $ItemLabel
 @onready var item_preview: Sprite2D = $ItemPreview 
 
 # Item spawning
@@ -15,8 +15,16 @@ var can_spawn: bool = true
 # Visual feedback
 var is_hovering: bool = false
 
-# Item selection
-var available_items: Array[String] = ["apple", "honey", "beer"]
+var available_items: Array[String] = [
+	"apple",   # For Daisy evolution (from TeenBear)
+	"honey",   # For KidBear evolution (from BabyBlob)
+	"beer",    # For Daisy evolution (from TeenBear)
+	"worm",    # For Slim evolution (from BabyBlob)
+	"club",    # For Tiny evolution (from BabyBlob)
+	"armor",   # For Sheldon evolution (from BabyBlob)
+	"dagger",  # For Fodder evolution (from KidSkeleton)
+	"sword"    # For Vincent evolution (from KidGhost)
+]
 var current_item_index: int = 0
 
 # Signals
@@ -84,18 +92,18 @@ func _cycle_item():
 	print("Switched to: ", available_items[current_item_index])
 
 func _update_item_display():
-	if item_label:
-		var current_item = available_items[current_item_index]
-		item_label.text = _get_item_display_name(current_item)
-		
-		# Color code the label based on item
-		match current_item:
-			"apple":
-				item_label.modulate = Color(1, 0.3, 0.3)
-			"honey":
-				item_label.modulate = Color(1, 0.5, 1)
-			"beer":
-				item_label.modulate = Color(0.5, 1, 0.5)
+	#if item_label:
+		#var current_item = available_items[current_item_index]
+		#item_label.text = _get_item_display_name(current_item)
+		#
+		## Color code the label based on item
+		#match current_item:
+			#"apple":
+				#item_label.modulate = Color(1, 0.3, 0.3)
+			#"honey":
+				#item_label.modulate = Color(1, 0.5, 1)
+			#"beer":
+				#item_label.modulate = Color(0.5, 1, 0.5)
 	_update_item_preview()
 
 func _get_item_display_name(item_key: String) -> String:
@@ -126,20 +134,20 @@ func _on_mouse_entered():
 	_update_hover_state()
 	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	
-	# Show tooltip
-	if item_label:
-		item_label.visible = true
+	## Show tooltip
+	#if item_label:
+		#item_label.visible = true
 
 func _on_mouse_exited():
 	is_hovering = false
 	sprite.modulate = Color.WHITE if can_spawn else Color(0.7, 0.7, 0.7)
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	
-	# Hide tooltip after a moment
-	if item_label:
-		await get_tree().create_timer(0.5).timeout
-		if not is_hovering:  # Only hide if still not hovering
-			item_label.visible = false
+	## Hide tooltip after a moment
+	#if item_label:
+		#await get_tree().create_timer(0.5).timeout
+		#if not is_hovering:  # Only hide if still not hovering
+			#item_label.visible = false
 
 func _update_hover_state():
 	if is_hovering and can_spawn:
@@ -159,14 +167,21 @@ func _update_item_preview():
 	var current_item = available_items[current_item_index]
 	match current_item:
 		"apple":
-			# Use your apple texture
 			item_preview.texture = preload("res://assets/items/rpg_item_icon_apple_44.png")
 		"honey":
-			# Use candy texture once you have it
 			item_preview.texture = preload("res://assets/items/rpg_item_icon_honey_63.png")
 		"beer":
-			# Use stone texture once you have it  
 			item_preview.texture = preload("res://assets/items/rpg_item_icon_beer_56.png")
+		"worm":
+			item_preview.texture = preload("res://assets/items/rpg_item_icon_worm_75.png")
+		"club":
+			item_preview.texture = preload("res://assets/items/rpg_item_icon_club_159.png")
+		"armor":
+			item_preview.texture = preload("res://assets/items/rpg_item_icon_plate_armor_194.png")
+		"dagger":
+			item_preview.texture = preload("res://assets/items/rpg_item_icon_dagger_152.png")
+		"sword":
+			item_preview.texture = preload("res://assets/items/rpg_item_icon_sword_153.png")
 
 	# Scale it down to icon size
 	item_preview.scale = Vector2(0.052, 0.052)

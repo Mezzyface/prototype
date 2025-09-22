@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=4 format=3 uid="uid://dbaniw4r23bgf"]
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=5 format=3 uid="uid://dbaniw4r23bgf"]
 
 [ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_0g64q"]
+[ext_resource type="Resource" path="res://resources/creatures/evolution_requirements/slim_to_normalion.tres" id="2_h2q05"]
 [ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="2_llpub"]
 [ext_resource type="SpriteFrames" uid="uid://64y7kysj18dm" path="res://resources/sprite_frames/slim_sprites.tres" id="3_h2q05"]
 
@@ -10,4 +11,5 @@ creature_id = "slim"
 display_name = "Slim"
 stage = 2
 sprite_resource = ExtResource("3_h2q05")
+evolutions = Array[ExtResource("1_0g64q")]([ExtResource("2_h2q05")])
 metadata/_custom_type_script = "uid://q22o01mw46jr"

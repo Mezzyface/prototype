@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=4 format=3 uid="uid://dah4n2wblljql"]
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=5 format=3 uid="uid://dah4n2wblljql"]
 
 [ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_cklox"]
 [ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="2_22b1b"]
+[ext_resource type="Resource" path="res://resources/creatures/evolution_requirements/bear_to_daisy.tres" id="2_ghx70"]
 [ext_resource type="SpriteFrames" uid="uid://btan67tyqr7o3" path="res://resources/sprite_frames/bearington_sprites.tres" id="3_22b1b"]
 
 [resource]
@@ -10,4 +11,5 @@ creature_id = "TeenBear"
 display_name = "Bearington"
 stage = 3
 sprite_resource = ExtResource("3_22b1b")
+evolutions = Array[ExtResource("1_cklox")]([ExtResource("2_ghx70")])
 metadata/_custom_type_script = "uid://q22o01mw46jr"

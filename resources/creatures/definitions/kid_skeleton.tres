@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=16 format=3 uid="uid://c3nwjcblrhe2h"]
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=17 format=3 uid="uid://c3nwjcblrhe2h"]
 
 [ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_exm6l"]
 [ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="2_r0tsu"]
+[ext_resource type="Resource" path="res://resources/creatures/evolution_requirements/skeleton_to_fodder.tres" id="2_sp78h"]
 [ext_resource type="Texture2D" uid="uid://coyigoen6cewx" path="res://assets/creatures/baby_skeleton/skeleton-idle.png" id="3_sp78h"]
 [ext_resource type="Texture2D" uid="uid://2oiyfnllu7l8" path="res://assets/creatures/baby_skeleton/skeleton-walk.png" id="4_15cfs"]
 
@@ -94,4 +95,5 @@ creature_id = "KidSkeleton"
 display_name = "Skellington"
 stage = 2
 sprite_resource = SubResource("SpriteFrames_tdtjm")
+evolutions = Array[ExtResource("1_exm6l")]([ExtResource("2_sp78h")])
 metadata/_custom_type_script = "uid://q22o01mw46jr"

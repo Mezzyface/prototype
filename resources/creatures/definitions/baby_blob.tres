@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=14 format=3 uid="uid://q5b3yj8o6s8y"]
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=18 format=3 uid="uid://q5b3yj8o6s8y"]
 
 [ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_f0ika"]
 [ext_resource type="Resource" uid="uid://bdhoho65ik22t" path="res://resources/creatures/evolution_requirements/kid_skeleton.tres" id="2_0dl4b"]
@@ -6,6 +6,10 @@
 [ext_resource type="Resource" uid="uid://cfa6a7fl1ffaf" path="res://resources/creatures/evolution_requirements/kid_ghost.tres" id="3_rt4kt"]
 [ext_resource type="Resource" uid="uid://dccbh53og7fuy" path="res://resources/creatures/evolution_requirements/kid_bear.tres" id="4_b7obj"]
 [ext_resource type="Texture2D" uid="uid://pifk863yaqte" path="res://assets/creatures/blob/blob_spritesheet.png" id="4_rt4kt"]
+[ext_resource type="Resource" path="res://resources/creatures/evolution_requirements/blob_to_slim.tres" id="5_bbsks"]
+[ext_resource type="Resource" path="res://resources/creatures/evolution_requirements/blob_to_tiny.tres" id="6_cmvec"]
+[ext_resource type="Resource" path="res://resources/creatures/evolution_requirements/blob_to_sheldon.tres" id="7_lekl6"]
+[ext_resource type="Resource" path="res://resources/creatures/evolution_requirements/blob_to_gnomer.tres" id="8_xq1rt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3nm6"]
 atlas = ExtResource("4_rt4kt")
@@ -67,5 +71,5 @@ script = ExtResource("3_0dl4b")
 creature_id = "BabyBlob"
 display_name = "Blobby"
 sprite_resource = SubResource("SpriteFrames_b7obj")
-evolutions = Array[ExtResource("1_f0ika")]([ExtResource("2_0dl4b"), ExtResource("3_rt4kt"), ExtResource("4_b7obj")])
+evolutions = Array[ExtResource("1_f0ika")]([ExtResource("2_0dl4b"), ExtResource("3_rt4kt"), ExtResource("4_b7obj"), ExtResource("5_bbsks"), ExtResource("6_cmvec"), ExtResource("7_lekl6"), ExtResource("8_xq1rt")])
 metadata/_custom_type_script = "uid://q22o01mw46jr"

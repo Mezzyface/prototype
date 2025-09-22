@@ -5,9 +5,13 @@ signal creature_discovered(creature_id: String)
 signal collection_updated
 
 var discovered_creatures: Dictionary = {}  # id: discovery_data
-var total_creatures: int = 15  # Total possible creatures
+var total_creatures: int = 0  # Total possible creatures
+var creature_database: CreatureDatabase
 
 func _ready():
+	creature_database = preload("res://resources/creature_database.tres")
+	total_creatures = creature_database.creatures.size()
+	
 	print("Collection Manager ready!")
 	print("Discovered: %d/%d" % [discovered_creatures.size(), total_creatures])
 

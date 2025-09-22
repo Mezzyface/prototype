@@ -17,6 +17,7 @@ var creature_stage: Enums.CreatureStage
 var base_speed: float
 var can_seek_items: bool = false
 var can_evolve: bool = false
+var target_scale: float = 1.0
 
 # Evolution tracking
 var inventory: Dictionary = {}  # item_id -> count

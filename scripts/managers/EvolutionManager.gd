@@ -63,14 +63,14 @@ func _perform_evolution(creature: Creature, evolution_req: EvolutionRequirement)
 	if evolved.has_method("inherit_from"):
 		evolved.inherit_from(creature)
 	
-	# Spawn effect and remove old creature
+	var evolved_final_scale = Vector2(evolved.target_scale, evolved.target_scale)
 
 	creature.queue_free()
 	
 	# Animate new creature appearing
 	evolved.scale = Vector2(0.1, 0.1)
 	var appear_tween = get_tree().create_tween()
-	appear_tween.tween_property(evolved, "scale", Vector2(1.0, 1.0), 0.3)
+	appear_tween.tween_property(evolved, "scale", evolved_final_scale, 0.3)
 	print("Emit the Signal")  
 	
 	evolution_completed.emit(creature, evolved)

@@ -1,7 +1,8 @@
 extends Node2D
 
 @onready var game_coordinator = CritterGameCoordinator.new()
-@onready var label: Label = $CanvasLayer/MarginContainer/Label
+@onready var label: Label = %Nametag
+@onready var collection_total: Label = %CollectionTotal
 @onready var tile_map_layer: TileMapLayer = $TileMapLayer
 @onready var boat: Boat = $Boat
 @onready var shop: Shop = $Shop  # Add this
@@ -87,6 +88,10 @@ func _on_discovery_for_ui(creature_id: String, first_time: bool):
 	if first_time:
 		print("New discovery: ", creature_id)
 		# Could play sound, show notification, etc.
+	# Update the collection total display
+	var discovered = game_coordinator.collection_manager.get_discovery_count()
+	var total = game_coordinator.collection_manager.total_creatures
+	collection_total.text = "%d/%d Discovered" % [discovered, total]
 
 func _on_creature_clicked_for_ui(creature: Creature):
 	# Could show click effects, update score, etc.

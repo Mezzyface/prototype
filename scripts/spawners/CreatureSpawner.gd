@@ -43,6 +43,8 @@ func spawn_egg_from_boat(can_evolve: bool = true) -> Creature:
 	egg.global_position = boat.global_position
 	egg.can_evolve = can_evolve
 	
+	var final_scale = Vector2(egg.target_scale, egg.target_scale)
+
 	# Start small
 	egg.scale = Vector2(0.1, 0.1)
 	egg.modulate.a = 0.0
@@ -59,7 +61,7 @@ func spawn_egg_from_boat(can_evolve: bool = true) -> Creature:
 	
 	# Grow and fade in
 	tween.parallel().tween_property(egg, "scale", 
-		Vector2(1.0, 1.0), 0.8)
+		final_scale, 0.8)
 	tween.parallel().tween_property(egg, "modulate:a", 
 		1.0, 0.5)
 	

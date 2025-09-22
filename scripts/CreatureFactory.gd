@@ -10,8 +10,8 @@ const STAGE_TARGET_HEIGHTS = {
 	Enums.CreatureStage.EGG: 32,     # Eggs are 32 pixels tall
 	Enums.CreatureStage.BABY: 32,    # Babies are 32 pixels tall
 	Enums.CreatureStage.KID: 48,     # Kids are 48 pixels tall
-	Enums.CreatureStage.TEEN: 64,    # Teens are 64 pixels tall
-	Enums.CreatureStage.ADULT: 96    # Adults are 96 pixels tall
+	Enums.CreatureStage.TEEN: 128,    # Teens are 64 pixels tall
+	Enums.CreatureStage.ADULT: 256    # Adults are 96 pixels tall
 }
 
 func _ready():
@@ -63,6 +63,7 @@ func create_creature(creature_id: String) -> Creature:
 			
 		var scale_factor = _calculate_scale_for_stage(sprite, definition.stage)
 		creature.scale = Vector2(scale_factor, scale_factor)
+		creature.target_scale = scale_factor
 		
 		print("Scaled %s: Original sprite height = %d, Target = %d, Scale = %.2f" % [
 			definition.display_name,
@@ -70,6 +71,8 @@ func create_creature(creature_id: String) -> Creature:
 			STAGE_TARGET_HEIGHTS.get(definition.stage, 32),
 			scale_factor
 		])
+		
+		
 	
 	# Setup collision
 	var collision = creature.get_node("CollisionShape2D")

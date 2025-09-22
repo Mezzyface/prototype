@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CreatureDatabase" load_steps=9 format=3 uid="uid://dspi5ditg0ajy"]
+[gd_resource type="Resource" script_class="CreatureDatabase" load_steps=19 format=3 uid="uid://dspi5ditg0ajy"]
 
 [ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="1_2kp4i"]
 [ext_resource type="Script" uid="uid://chcuclhofvfj5" path="res://resources/CreatureDatabase.gd" id="1_vs2yk"]
@@ -8,8 +8,25 @@
 [ext_resource type="Resource" uid="uid://i78y7mtimr4t" path="res://resources/creatures/definitions/kid_ghost.tres" id="5_ljh8q"]
 [ext_resource type="Resource" uid="uid://cfrkvufdd0r4c" path="res://resources/creatures/definitions/kid_bear.tres" id="6_eg7bi"]
 [ext_resource type="Resource" uid="uid://dah4n2wblljql" path="res://resources/creatures/definitions/teen_bear.tres" id="7_tnmke"]
+[ext_resource type="Resource" uid="uid://wfr13kqlq1ms" path="res://resources/creatures/definitions/daisy.tres" id="8_bm5pj"]
+[ext_resource type="Resource" uid="uid://dd07nhk7s36uv" path="res://resources/creatures/definitions/fodder.tres" id="9_78i15"]
+[ext_resource type="Resource" uid="uid://mh4adpma07fg" path="res://resources/creatures/definitions/gnomer.tres" id="10_4c52o"]
+[ext_resource type="Resource" uid="uid://c4dsounv5best" path="res://resources/creatures/definitions/normalion.tres" id="11_cv8bv"]
+[ext_resource type="Resource" uid="uid://ck60pe32ti8g4" path="res://resources/creatures/definitions/sheldon.tres" id="12_dcbua"]
+[ext_resource type="Resource" uid="uid://dbaniw4r23bgf" path="res://resources/creatures/definitions/slim.tres" id="13_7p4mj"]
+[ext_resource type="Resource" uid="uid://ggioyrpjkqij" path="res://resources/creatures/definitions/tiny.tres" id="14_gxhw2"]
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="15_k5grl"]
+[ext_resource type="SpriteFrames" uid="uid://tkmebgetheps" path="res://resources/sprite_frames/vincent_sprites.tres" id="16_efdyt"]
+
+[sub_resource type="Resource" id="Resource_ocdbf"]
+script = ExtResource("1_2kp4i")
+creature_id = "vincent"
+display_name = "Vincent"
+stage = 4
+sprite_resource = ExtResource("16_efdyt")
+metadata/_custom_type_script = "uid://q22o01mw46jr"
 
 [resource]
 script = ExtResource("1_vs2yk")
-creatures = Array[ExtResource("1_2kp4i")]([ExtResource("2_xf7nt"), ExtResource("3_tnmke"), ExtResource("4_ecy1o"), ExtResource("5_ljh8q"), ExtResource("6_eg7bi"), ExtResource("7_tnmke")])
+creatures = Array[ExtResource("1_2kp4i")]([ExtResource("2_xf7nt"), ExtResource("3_tnmke"), ExtResource("4_ecy1o"), ExtResource("5_ljh8q"), ExtResource("6_eg7bi"), ExtResource("7_tnmke"), ExtResource("8_bm5pj"), ExtResource("9_78i15"), ExtResource("10_4c52o"), ExtResource("11_cv8bv"), ExtResource("12_dcbua"), ExtResource("13_7p4mj"), ExtResource("14_gxhw2"), SubResource("Resource_ocdbf")])
 metadata/_custom_type_script = "uid://chcuclhofvfj5"

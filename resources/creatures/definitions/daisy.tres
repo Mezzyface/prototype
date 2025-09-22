@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=4 format=3 uid="uid://wfr13kqlq1ms"]
+
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_ugnts"]
+[ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="2_v37ak"]
+[ext_resource type="SpriteFrames" uid="uid://dmu5a2ovt622y" path="res://resources/sprite_frames/daisy_sprites.tres" id="3_1gfwi"]
+
+[resource]
+script = ExtResource("2_v37ak")
+creature_id = "daisy"
+display_name = "Daisy"
+stage = 4
+sprite_resource = ExtResource("3_1gfwi")
+metadata/_custom_type_script = "uid://q22o01mw46jr"

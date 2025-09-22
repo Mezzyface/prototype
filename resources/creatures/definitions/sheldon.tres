@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=4 format=3 uid="uid://ck60pe32ti8g4"]
+
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_in0or"]
+[ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="2_wcvam"]
+[ext_resource type="SpriteFrames" uid="uid://l3kmt2y6qpvf" path="res://resources/sprite_frames/sheldon_assets.tres" id="3_52r4k"]
+
+[resource]
+script = ExtResource("2_wcvam")
+creature_id = "sheldon"
+display_name = "Sheldon"
+stage = 4
+sprite_resource = ExtResource("3_52r4k")
+metadata/_custom_type_script = "uid://q22o01mw46jr"

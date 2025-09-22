@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=4 format=3 uid="uid://ggioyrpjkqij"]
+
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_pjr2y"]
+[ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="2_pp2e1"]
+[ext_resource type="SpriteFrames" uid="uid://tb4cjpcqdvbs" path="res://resources/sprite_frames/tiny_sprites.tres" id="3_1ym7p"]
+
+[resource]
+script = ExtResource("2_pp2e1")
+creature_id = "tiny"
+display_name = "Tiny"
+stage = 4
+sprite_resource = ExtResource("3_1ym7p")
+metadata/_custom_type_script = "uid://q22o01mw46jr"

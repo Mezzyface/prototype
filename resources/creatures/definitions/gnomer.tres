@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=4 format=3 uid="uid://mh4adpma07fg"]
+
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_f6j40"]
+[ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="2_5erke"]
+[ext_resource type="SpriteFrames" uid="uid://b1ghm7wu4nx30" path="res://resources/sprite_frames/gnomer_sprites.tres" id="3_onu6p"]
+
+[resource]
+script = ExtResource("2_5erke")
+creature_id = "gnomer"
+display_name = "Gnomer"
+stage = 3
+sprite_resource = ExtResource("3_onu6p")
+metadata/_custom_type_script = "uid://q22o01mw46jr"

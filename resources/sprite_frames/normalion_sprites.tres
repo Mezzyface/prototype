@@ -1,0 +1,65 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://boiwdgfk4q688"]
+
+[ext_resource type="Texture2D" uid="uid://b4yqn0ng2uri1" path="res://assets/creatures/lizard/lizard_idle.png" id="1_8fs5s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkee0"]
+atlas = ExtResource("1_8fs5s")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa447"]
+atlas = ExtResource("1_8fs5s")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhl78"]
+atlas = ExtResource("1_8fs5s")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kcmd"]
+atlas = ExtResource("1_8fs5s")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b6mo6"]
+atlas = ExtResource("1_8fs5s")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2ska"]
+atlas = ExtResource("1_8fs5s")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibx2d"]
+atlas = ExtResource("1_8fs5s")
+region = Rect2(1152, 0, 192, 192)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkee0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa447")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhl78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kcmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b6mo6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2ska")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibx2d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]

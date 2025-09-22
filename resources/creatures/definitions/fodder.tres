@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CreatureDefinition" load_steps=4 format=3 uid="uid://dd07nhk7s36uv"]
+
+[ext_resource type="Script" uid="uid://bfesw8hr3ckk4" path="res://resources/EvolutionRequirement.gd" id="1_ldilj"]
+[ext_resource type="Script" uid="uid://q22o01mw46jr" path="res://resources/CreatureDefinition.gd" id="2_64tl8"]
+[ext_resource type="SpriteFrames" uid="uid://dyy70oapirib6" path="res://resources/sprite_frames/fodder_sprites.tres" id="3_7piyu"]
+
+[resource]
+script = ExtResource("2_64tl8")
+creature_id = "fodder"
+display_name = "Fodder"
+stage = 4
+sprite_resource = ExtResource("3_7piyu")
+metadata/_custom_type_script = "uid://q22o01mw46jr"
